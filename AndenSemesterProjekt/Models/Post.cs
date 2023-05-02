@@ -1,7 +1,6 @@
 ﻿namespace AndenSemesterProjekt.Models
 {
-    public class Class
+    public class Post
     {
-        //.-.
     }
 }
