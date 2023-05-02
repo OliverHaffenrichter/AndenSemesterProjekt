@@ -11,7 +11,6 @@ namespace AndenSemesterProjekt.Services
             // test
         }
 
-        //stor fed pik
         public void deleteBlogPost(int id)
         {
             throw new NotImplementedException();
