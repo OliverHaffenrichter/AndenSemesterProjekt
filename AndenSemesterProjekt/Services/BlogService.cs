@@ -10,6 +10,7 @@ namespace AndenSemesterProjekt.Services
             throw new NotImplementedException();
         }
 
+        //stor fed pik
         public void deleteBlogPost(int id)
         {
             throw new NotImplementedException();
