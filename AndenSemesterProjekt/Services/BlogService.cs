@@ -8,6 +8,7 @@ namespace AndenSemesterProjekt.Services
         public Post CreateBlogPost(string information)
         {
             throw new NotImplementedException();
+            // test
         }
 
         //stor fed pik
