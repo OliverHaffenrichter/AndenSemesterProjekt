@@ -5,6 +5,7 @@ namespace AndenSemesterProjekt.Services
 {
     public class BlogService : IBlogService
     {
+        private List<Post> posts = new List<Post>();
         public Post CreateBlogPost(string information)
         {
             throw new NotImplementedException();
