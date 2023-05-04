@@ -16,7 +16,7 @@
 
 <a asp-route-currentPage="@Model.GoDownPage()" class="btn btn-primary">Last Page</a>
 
-@for (int i = 1; i < @Model.TotalPages; i++)
+@for (int i = 1; i < @Model.TotalPages + 1; i++)
 {
     <a asp-route-currentPage="@i">@i</a>
 }
