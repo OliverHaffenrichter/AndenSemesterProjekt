@@ -6,13 +6,13 @@ namespace AndenSemesterProjekt.Services
     public class BlogService : IBlogService
     {
         private List<Post> posts = new List<Post>();
+        public int CurrentPage { get; set; } = 1;
+        public int PageSize { get; set; } = 8;
         public Post CreateBlogPost(string information)
         {
             throw new NotImplementedException();
-            // test
         }
 
-        //stor fed pik
         public void deleteBlogPost(int id)
         {
             throw new NotImplementedException();
@@ -20,7 +20,13 @@ namespace AndenSemesterProjekt.Services
 
         public List<Post> GetAllBlogPosts()
         {
-            throw new NotImplementedException();
+            //List<Post> resultPosts = new List<Post>();
+            //for (int i = PageSize*CurrentPage; i < (PageSize*CurrentPage) + PageSize; i++)
+            //{
+            //    resultPosts.Add(posts[i]);
+            //}
+            //return resultPosts;
+            return posts.OrderBy(d => d.Id).Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
         }
 
         public List<Post> GetAllBlogPostsByCategory(string category)
