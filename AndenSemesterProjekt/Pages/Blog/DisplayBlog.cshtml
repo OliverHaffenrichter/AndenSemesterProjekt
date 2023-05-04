@@ -1,0 +1,25 @@
+﻿@page
+@model AndenSemesterProjekt.Pages.Blog.DisplayBlogModel
+@{
+
+}
+
+
+
+@foreach (var item in Model.Posts)
+{
+    <p>@item.Id</p>
+    <p>@item.Information</p>
+    <p>@item.Category</p>
+    <p>@item.CreationDate</p>
+}
+
+<a asp-route-currentPage="@Model.GoDownPage()" class="btn btn-primary">Last Page</a>
+
+@for (int i = 1; i < @Model.TotalPages; i++)
+{
+    <a asp-route-currentPage="@i">@i</a>
+}
+
+<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>
+<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>

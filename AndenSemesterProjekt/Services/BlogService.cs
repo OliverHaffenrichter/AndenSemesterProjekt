@@ -1,4 +1,5 @@
 ﻿using AndenSemesterProjekt.Interfaces;
+using AndenSemesterProjekt.Mock;
 using AndenSemesterProjekt.Models;
 
 namespace AndenSemesterProjekt.Services
@@ -6,8 +7,13 @@ namespace AndenSemesterProjekt.Services
     public class BlogService : IBlogService
     {
         private List<Post> posts = new List<Post>();
-        public int CurrentPage { get; set; } = 1;
-        public int PageSize { get; set; } = 8;
+
+        //public int CurrentPage { get; set; } = 1;
+        //public int PageSize { get; set; } = 8;
+        public BlogService()
+        {
+            posts = MockPost.GetMockPosts();
+        }
         public Post CreateBlogPost(string information)
         {
             throw new NotImplementedException();
@@ -26,7 +32,8 @@ namespace AndenSemesterProjekt.Services
             //    resultPosts.Add(posts[i]);
             //}
             //return resultPosts;
-            return posts.OrderBy(d => d.Id).Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
+            //return posts.OrderBy(d => d.Id).Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
+            return posts;
         }
 
         public List<Post> GetAllBlogPostsByCategory(string category)

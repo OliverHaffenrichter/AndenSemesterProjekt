@@ -1,7 +1,11 @@
+using AndenSemesterProjekt.Interfaces;
+using AndenSemesterProjekt.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IBlogService, BlogService>();
 
 var app = builder.Build();
 
