@@ -9,13 +9,13 @@ namespace AndenSemesterProjekt.Pages.Blog
 {
     public class DisplayBlogModel : PageModel
     {
-        private int _blogSize = 0;
-
         public List<Post> Posts { get; set; }
         public IBlogService _blogService;
+        
         [BindProperty(SupportsGet = true)]
-        public int CurrentPage { get; set; } = 1;
-        public int PageSize { get; } = 3;
+        public int CurrentPage { get; set; }
+
+        public int PageSize { get; } = 1;
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(BlogSize, PageSize));
         public int BlogSize { get { return _blogService.GetAllBlogPosts().Count(); } }
 
@@ -33,22 +33,6 @@ namespace AndenSemesterProjekt.Pages.Blog
                 .Take(PageSize)
                 .ToList();
             return Page();
-        }
-
-        public int GoUpPage()
-        {
-            if (CurrentPage + 1 < TotalPages)
-                return ++CurrentPage;
-            else
-                return CurrentPage;
-        }
-
-        public int GoDownPage()
-        {
-            if (CurrentPage - 1 > 0)
-                return --CurrentPage;
-            else
-                return CurrentPage;
         }
     }
 }

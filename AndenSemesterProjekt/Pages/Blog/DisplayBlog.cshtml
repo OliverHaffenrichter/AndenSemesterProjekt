@@ -14,12 +14,19 @@
     <p>@item.CreationDate</p>
 }
 
-<a asp-route-currentPage="@Model.GoDownPage()" class="btn btn-primary">Last Page</a>
+@*<a asp-route-currentPage="@Model.GoDownPage()" class="btn btn-primary">Last Page</a>*@
+@if (Model.CurrentPage > 1)
+{
+    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Previous page</a>
+}
 
 @for (int i = 1; i < @Model.TotalPages + 1; i++)
 {
     <a asp-route-currentPage="@i">@i</a>
 }
 
-<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>
-<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>
+@if (Model.CurrentPage < Model.BlogSize)
+{
+    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">NextPage</a>
+}
+@*<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>*@
