@@ -3,10 +3,11 @@
 @{
 
 }
-
-<h1>Blog</h1>
-<img class="img-fluid" style="object-fit: cover; object-position: center; width: 100vw; height: 100vh; margin-bottom: 100px;"
-     src="http://pixelprowess.com/i/robots-camp.png"
+@if (Model.CurrentPage == 1)
+{
+    <h1>Blog</h1>
+    <img class="img-fluid" style="object-fit: cover; object-position: center; width: 100vw; height: 100vh; margin-bottom: 100px;"
+     src="/data/Images/BlogTitleBillede.jpg"
      alt="Robots in Camp" />
 
 <div class="d-grid gap-2 bg-danger position-fixed top-50 end-0 m-3" style="padding:10px;">
@@ -17,20 +18,22 @@
 </div>
 
 
-<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-    ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    </p>
+}
 <div class="col-4">
-		<form method="post" class="form-inline">
-			<div class="input-group mb-3">
-				<input class="form-control mr-1" placeholder="Enter search term" />
-				<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
-			</div>
-            </form>
-            </div>
+    <form method="post" class="form-inline">
+        <div class="input-group mb-3">
+            <input class="form-control mr-1" placeholder="Enter search term" />
+            <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
 
 @*Display the blog posts*@
 
