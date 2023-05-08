@@ -61,3 +61,12 @@ nav ul {
     text-align: center;
     font-size: 12px;
 }
+
+/*INDEX CONTENT*/
+
+.index-banner-background {
+    background-image: url("/data/Images/NF1A7428.jpg");
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+}
