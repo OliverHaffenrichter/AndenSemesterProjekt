@@ -43,7 +43,6 @@ nav ul {
     min-height: 150px;
     padding-top: 2%;
     position: absolute;
-    bottom: 0;
 }
 
 .footerbox1 {
@@ -66,7 +65,7 @@ nav ul {
 
 .index-banner-background {
     background-image: url("/data/Images/NF1A7428.jpg");
-    height: 500px;
+    height: 75vh;
     background-position: center;
     background-size: cover;
 }
