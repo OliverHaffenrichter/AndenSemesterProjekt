@@ -7,7 +7,7 @@
 {
     <h1>Blog</h1>
     <img class="img-fluid" style="object-fit: cover; object-position: center; width: 100vw; height: 100vh; margin-bottom: 100px;"
-     src="http://pixelprowess.com/i/robots-camp.png"
+     src="/data/Images/BlogTitleBillede.jpg"
      alt="Robots in Camp" />
 
 
@@ -44,7 +44,7 @@
 <div class="container-fluid m-2 p-2">
 @if (Model.CurrentPage > 1)
 {
-    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)/#PageJump">Sidste side</a>
+    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Sidste side</a>
 }
 else
 {
