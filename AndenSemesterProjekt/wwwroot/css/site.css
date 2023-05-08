@@ -14,7 +14,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: open-sans;
 }
 
 nav ul {
@@ -33,4 +34,27 @@ nav ul {
 
 .btn {
     background-color: #886588ff;
+}
+
+footer {
+    background-color: #c8b2a5;
+    display: inline-grid;
+    min-height: 150px;
+    padding-top: 2%;
+}
+
+.footerbox1 {
+    display: inline-flex;
+    align-items: center;
+}
+
+.footerinbox {
+    width: 50%;
+    height: auto;
+    text-align: center;
+}
+
+.footer-lower {
+    text-align: center;
+    font-size: 12px;
 }
