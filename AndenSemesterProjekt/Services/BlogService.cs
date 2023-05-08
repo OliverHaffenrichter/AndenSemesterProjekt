@@ -43,7 +43,16 @@ namespace AndenSemesterProjekt.Services
 
         public List<Post> GetAllBlogPostsByCriteria(string criteria)
         {
-            throw new NotImplementedException();
+            string searchString = criteria.Replace(" ", ""); ;
+            if (criteria != null)
+            {
+                return posts.Where(c => c.Title.Contains(searchString.ToLower())
+                || c.Category.Contains(searchString.ToLower())).ToList();
+            }
+            else
+            {
+                return posts;
+            }
         }
 
         public Post GetBlogPostById(int id)

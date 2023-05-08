@@ -29,22 +29,26 @@
 <div class="col-4">
     <form method="post" class="form-inline">
         <div class="input-group mb-3">
-            <input class="form-control mr-1" placeholder="Enter search term" />
-            <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+            <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
+            <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
         </div>
     </form>
 </div>
 
 @*Display the blog posts*@
 
-@foreach (var item in Model.Posts)
+@if (Model.Posts != null)
 {
-    <div class="container-fluid bg-danger">
-    <p>@item.Id</p>
-    <p>@item.Information</p>
-    <p>@item.Category</p>
-    <p>@item.CreationDate</p>
-    </div>
+    @foreach (var item in Model.Posts)
+    {
+        <div class="container-fluid bg-danger">
+            <p>@item.Id</p>
+            <p>@item.Title</p>
+            <p>@item.Information</p>
+            <p>@item.Category</p>
+            <p>@item.CreationDate</p>
+        </div>
+    }
 }
 
 @*Pagination start*@
