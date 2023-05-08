@@ -13,13 +13,26 @@ html {
   min-height: 100%;
 }
 
+header {
+    position: sticky;
+    top: 0;
+    background-color: #000000b8 !important;
+    z-index:5;
+}
+
 body {
     margin-bottom: 60px;
     font-family: open-sans;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin-top:-114px;
 }
 
 nav ul {
-    background-color: white;
+    /*background-color: white;*/
 }
 
 .nav-link { 
@@ -42,8 +55,9 @@ nav ul {
     display: inline-grid;
     min-height: 150px;
     padding-top: 2%;
-    position: absolute;
-    bottom: 1px;
+    position: relative;
+    bottom: 0px;
+    margin-bottom: -114px;
 }
 
 .footerbox1 {
@@ -66,7 +80,55 @@ nav ul {
 
 .index-banner-background {
     background-image: url("/data/Images/NF1A7428.jpg");
-    height: 75vh;
+    height: 85vh;
+    background-position: center;
+    background-size: cover;
+    filter: brightness(0.8);
+}
+
+.index-content-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.index-display-item {
+    width: 50%;
+    height: 45vh;
+    background-color: antiquewhite;
+    /*    border: 1px solid black;*/
+    display: inline-grid;
+    align-items: center;
+    justify-items: center;
+    padding: 25px;
+    box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.75) inset;
+    -webkit-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.75) inset;
+}
+
+/*.index-display-item:hover {
+    filter:brightness(1)
+}*/
+
+#index-item1 {
+    background: linear-gradient( rgb(0 0 0 / 25%), rgba(0, 0, 0, 0.25) ), url(/data/Images/events.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#index-item2 {
+    background-image: linear-gradient( rgb(0 0 0 / 25%), rgba(0, 0, 0, 0.25) ), url(/data/Images/blog.PNG);
+    background-position: center;
+    background-size: cover;
+}
+
+#index-item3 {
+    background-image: url("/data/Images/Maila.jpg");
+    background-image: linear-gradient( rgb(0 0 0 / 25%), rgba(0, 0, 0, 0.25) ), url(/data/Images/Maila.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#index-item4 {
+    background-image: linear-gradient( rgb(0 0 0 / 25%), rgba(0, 0, 0, 0.25) ), url(/data/Images/hvemerjeg.jpg);
     background-position: center;
     background-size: cover;
 }
