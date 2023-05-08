@@ -35,7 +35,30 @@
         </div>
     </form>
 </div>
+<div class="container-fluid m-2 p-2">
+    @if (Model.CurrentPage != 1 && Model.Criteria == null)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Forrige side</a>
+    }
 
+    @for (int i = 1; i < @Model.TotalPages + 1; i++)
+    {
+        <a asp-route-currentPage="@i">@i</a>
+    }
+    @if (Model.CurrentPage < Model.TotalPages
+    && Model.Criteria == null)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Næste side </a>
+    }
+</div>
 @*Display the blog posts*@
 
 @if (Model.Posts != null)
@@ -43,8 +66,8 @@
     @foreach (var item in Model.Posts)
     {
         <div class="container-fluid bg-danger">
-            <p>@item.Id</p>
             <p>@item.Title</p>
+            <img class="col-md-8" src="/data/Images/PostTest.jpg">
             <p>@item.Information</p>
             <p>@item.Category</p>
             <p>@item.CreationDate</p>
@@ -67,7 +90,8 @@ else
 {
     <a asp-route-currentPage="@i">@i</a>
 }
-    @if (Model.CurrentPage < Model.PageSize && Model.Criteria == null)
+    @if (Model.CurrentPage < Model.TotalPages 
+    && Model.Criteria == null)
 {
     <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
 }
