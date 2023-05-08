@@ -16,3 +16,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+nav ul {
+    background-color: white;
+}
+
+.nav-link { 
+    color: #886588ff !important;
+}
+
+#nav {
+    border-bottom: solid;
+    border-color: #886588ff;
+
+}
+
+.btn {
+    background-color: #886588ff;
+}
