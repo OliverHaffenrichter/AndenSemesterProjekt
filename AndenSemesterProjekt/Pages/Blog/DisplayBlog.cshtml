@@ -63,18 +63,6 @@ else
     <a class="btn btn-dark disabled">Næste side </a>
 }
 
-<script>
-    $(document).scroll(function () {
-        // Note scroll position.
-        localStorage['PageJump'] = $(document).scrollTop();
-    });
-
-    $(document).ready(function () {
-        // Maintain scroll position.
-        $(document).scrollTop(localStorage['DisplayBlog']);
-    });
-</script>
-
 @*Pagination End*@
 
 @*<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>*@
