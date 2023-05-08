@@ -43,7 +43,7 @@ nav ul {
     min-height: 150px;
     padding-top: 2%;
     position: absolute;
-    bottom: 0;
+    bottom: 1px;
 }
 
 .footerbox1 {
