@@ -26,6 +26,7 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     </p>
 }
+
 <div class="col-4">
     <form method="post" class="form-inline">
         <div class="input-group mb-3">
@@ -53,20 +54,20 @@
 
 @*Pagination start*@
 <div class="container-fluid m-2 p-2">
-@if (Model.CurrentPage > 1)
+@if (Model.CurrentPage != 1 && Model.Criteria == null)
 {
-    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Sidste side</a>
+    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
 }
 else
 {
-    <a class="btn btn-dark disabled">Sidste side</a>
+    <a class="btn btn-dark disabled">Forrige side</a>
 }
 
 @for (int i = 1; i < @Model.TotalPages + 1; i++)
 {
     <a asp-route-currentPage="@i">@i</a>
 }
-@if (Model.CurrentPage < Model.PageSize)
+    @if (Model.CurrentPage < Model.PageSize && Model.Criteria == null)
 {
     <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
 }
@@ -75,11 +76,11 @@ else
     <a class="btn btn-dark disabled">Næste side </a>
 }
 </div>
-<div class="col-4 m-2 p-2">
+<div class="col-4">
     <form method="post" class="form-inline">
         <div class="input-group mb-3">
-            <input class="form-control mr-1" placeholder="Enter search term" />
-            <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+            <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
+            <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
         </div>
     </form>
 </div>
