@@ -17,7 +17,7 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// _blogService is a variable used to for dependency injection 
         /// </summary>
         public IBlogService _blogService;
-        
+
         /// <summary>
         /// CurrentPage a variable containing the current page the user is on
         /// BindProperty(SupportsGet) is set to true so that we can store the data between page loads
@@ -39,9 +39,16 @@ namespace AndenSemesterProjekt.Pages.Blog
         public int BlogSize { get { return _blogService.GetAllBlogPosts().Count(); } }
 
         /// <summary>
+        /// Criteria is a variable used to contain the searchstring
+        /// </summary>
+        [BindProperty]
+        public string Criteria { get; set; }
+
+        /// <summary>
         /// Creates a dependecny injection for _blogService using the interface IBlogService
         /// </summary>
         /// <param name="blogService"></param>
+
         public DisplayBlogModel(IBlogService blogService)
         {
             _blogService = blogService;
@@ -58,13 +65,23 @@ namespace AndenSemesterProjekt.Pages.Blog
             {
                 return Page();
             }
-            
+
             CurrentPage = currentPage;
             Posts = _blogService.GetAllBlogPosts()
                 .OrderBy(p => p.Id)
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
+            return Page();
+        }
+
+        public IActionResult OnPostCriteria(string Criteria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToPage("DisplayBlog");
+            }
+            Posts = _blogService.GetAllBlogPostsByCriteria(Criteria);
             return Page();
         }
     }
