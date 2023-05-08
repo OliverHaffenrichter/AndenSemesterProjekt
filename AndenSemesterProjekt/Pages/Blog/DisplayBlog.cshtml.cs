@@ -54,6 +54,11 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// <returns>returns page()</returns>
         public IActionResult OnGet(int currentPage)
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            
             CurrentPage = currentPage;
             Posts = _blogService.GetAllBlogPosts()
                 .OrderBy(p => p.Id)
