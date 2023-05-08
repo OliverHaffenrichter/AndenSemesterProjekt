@@ -36,11 +36,13 @@ nav ul {
     background-color: #886588ff;
 }
 
-footer {
+.customfooter {
     background-color: #c8b2a5;
+    width: 100%;
     display: inline-grid;
     min-height: 150px;
     padding-top: 2%;
+    position: absolute;
 }
 
 .footerbox1 {
