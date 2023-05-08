@@ -4,13 +4,37 @@
 
 }
 
+<h1>Blog</h1>
+<img class="img-fluid" style="object-fit: cover; object-position: center; width: 100vw; height: 100vh; margin-bottom: 100px;"
+     src="http://pixelprowess.com/i/robots-camp.png"
+     alt="Robots in Camp" />
+
+
+<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+    ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+<div class="col-4">
+		<form method="post" class="form-inline">
+			<div class="input-group mb-3">
+				<input class="form-control mr-1" placeholder="Enter search term" />
+				<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+			</div>
+            </form>
+            </div>
+
 @*Display the blog posts*@
+
 @foreach (var item in Model.Posts)
 {
+    <div class="container-fluid bg-danger">
     <p>@item.Id</p>
     <p>@item.Information</p>
     <p>@item.Category</p>
     <p>@item.CreationDate</p>
+    </div>
 }
 
 @*Pagination start*@
@@ -27,7 +51,6 @@ else
 {
     <a asp-route-currentPage="@i">@i</a>
 }
-
 @if (Model.CurrentPage < Model.PageSize)
 {
     <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
