@@ -4,6 +4,7 @@ using AndenSemesterProjekt.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace AndenSemesterProjekt.Pages.Blog
 {
@@ -75,11 +76,16 @@ namespace AndenSemesterProjekt.Pages.Blog
             return Page();
         }
 
+        /// <summary>
+        /// OnpostCriteria is the method that gets called on search attempt
+        /// </summary>
+        /// <param name="Criteria"></param>
+        /// <returns></returns>
         public IActionResult OnPostCriteria(string Criteria)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToPage("DisplayBlog");
+                return RedirectToPage("DisplayBlog", new { currentPage = 1.ToString() });
             }
             Posts = _blogService.GetAllBlogPostsByCriteria(Criteria);
             return Page();
