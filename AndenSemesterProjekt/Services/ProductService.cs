@@ -1,6 +1,7 @@
 ﻿using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Mock;
 using AndenSemesterProjekt.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace AndenSemesterProjekt.Services
 {
@@ -23,7 +24,15 @@ namespace AndenSemesterProjekt.Services
 
         public Product DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            foreach (Product product in products)
+            {
+                if (product.Id == id)
+                {
+                    products.Remove(product);
+                    return product;
+                }
+            }
+            return null;
         }
 
         public List<Product> GetAllProducts()
@@ -43,7 +52,14 @@ namespace AndenSemesterProjekt.Services
 
         public Product GetProductById(int id)
         {
-            throw new NotImplementedException();
+            foreach (Product product in products)
+            {
+                if (product.Id == id)
+                {
+                    return product;
+                }
+            }
+            return null;
         }
 
         public void UpdateProduct(int id, Product product)
