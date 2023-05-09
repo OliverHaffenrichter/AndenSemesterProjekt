@@ -21,14 +21,14 @@ header {
 }
 
 body {
-    margin-bottom: 60px;
     font-family: open-sans;
     display: flex;
     flex-direction: column;
+    height:100%;
 }
 
 main {
-    margin-top:-114px;
+
 }
 
 nav ul {
@@ -55,9 +55,13 @@ nav ul {
     display: inline-grid;
     min-height: 150px;
     padding-top: 2%;
-    position: relative;
+    /*    position: fixed;
     bottom: 0px;
+    margin-top: 50px;*/
     margin-bottom: -114px;
+    bottom: 0;
+    position: absolute;
+    top: 100%;
 }
 
 .footerbox1 {
@@ -84,6 +88,7 @@ nav ul {
     background-position: center;
     background-size: cover;
     filter: brightness(0.8);
+    margin-top:-114px;
 }
 
 .index-content-flex {
