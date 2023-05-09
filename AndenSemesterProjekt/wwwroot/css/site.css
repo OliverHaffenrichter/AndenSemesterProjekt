@@ -21,7 +21,7 @@ header {
 }
 
 body {
-    font-family: open-sans;
+    font-family: calibri;
     display: flex;
     flex-direction: column;
     height:100%;
@@ -35,8 +35,10 @@ nav ul {
     /*background-color: white;*/
 }
 
-.nav-link { 
+.nav-link {
     color: #886588ff !important;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 #nav {
