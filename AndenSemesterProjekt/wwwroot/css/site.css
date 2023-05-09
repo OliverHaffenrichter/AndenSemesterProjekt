@@ -55,9 +55,6 @@ nav ul {
     display: inline-grid;
     min-height: 150px;
     padding-top: 2%;
-    /*    position: fixed;
-    bottom: 0px;
-    margin-top: 50px;*/
     margin-bottom: -114px;
     bottom: 0;
     position: absolute;
