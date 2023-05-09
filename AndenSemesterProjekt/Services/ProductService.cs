@@ -45,7 +45,25 @@ namespace AndenSemesterProjekt.Services
 
         public List<Product> GetProductByCategory(string category)
         {
-            throw new NotImplementedException();
+            //List<Product> productCategory = new List<Product>();
+            //if (category != null)
+            //{
+            //   foreach(Product product in products) 
+            //    { 
+            //        if (category.Equals(product.Category)) { }
+            //    }
+
+            //}
+           
+            if (category != null)
+            {
+                return products.Where(c => c.Category.Equals(category.ToLower())).ToList();
+            }
+            else
+            {
+                return products;
+            }
+
         }
 
         public List<Product> GetProductByCriteria(string criteria)

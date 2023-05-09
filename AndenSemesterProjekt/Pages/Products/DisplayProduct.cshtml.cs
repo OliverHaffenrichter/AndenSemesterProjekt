@@ -19,6 +19,9 @@ namespace AndenSemesterProjekt.Pages.Products
         /// </summary>
         public IProductService _productService;
 
+        [BindProperty]
+        public string Categories { get; set; }
+
         public DisplayProductModel(IProductService productService)
         {
             _productService = productService;
