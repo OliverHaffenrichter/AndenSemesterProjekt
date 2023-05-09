@@ -19,7 +19,7 @@ namespace AndenSemesterProjekt.Pages.Products
         /// </summary>
         public IProductService _productService;
 
-        // Git Commit Test
+      
 
         [BindProperty]
         public string Categories { get; set; }
