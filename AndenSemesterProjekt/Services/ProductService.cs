@@ -24,15 +24,18 @@ namespace AndenSemesterProjekt.Services
 
         public Product DeleteProduct(int id)
         {
-            foreach (Product product in products)
-            {
-                if (product.Id == id)
-                {
-                    products.Remove(product);
-                    return product;
-                }
-            }
-            return null;
+            //foreach (Product product in products)
+            //{
+            //    if (product.Id == id)
+            //    {
+            //        products.Remove(product);
+            //        return product;
+            //    }
+            //}
+            Product product = GetProductById(id);
+            products.Remove(product);
+
+            return product;
         }
 
         public List<Product> GetAllProducts()
