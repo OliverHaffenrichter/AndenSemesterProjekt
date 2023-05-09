@@ -19,15 +19,23 @@ namespace AndenSemesterProjekt.Services
             throw new NotImplementedException();
         }
 
-        public void deleteBlogPost(int id)
+        public Post deleteBlogPost(int id)
         {
-            throw new NotImplementedException();
+            foreach (Post post in posts)
+            {
+                if (post.Id == id)
+                {
+                    posts.Remove(post);
+                    return post;
+                }
+            }
+            return null;
         }
 
         public List<Post> GetAllBlogPosts()
         {
             //List<Post> resultPosts = new List<Post>();
-            //for (int i = PageSize*CurrentPage; i < (PageSize*CurrentPage) + PageSize; i++)
+            //for (int i = PageSize * CurrentPage; i < (PageSize * CurrentPage) + PageSize; i++)
             //{
             //    resultPosts.Add(posts[i]);
             //}
@@ -57,7 +65,14 @@ namespace AndenSemesterProjekt.Services
 
         public Post GetBlogPostById(int id)
         {
-            throw new NotImplementedException();
+            foreach (Post post in posts)
+            {
+                if(post.Id == id)
+                {
+                    return post;
+                }
+            }
+            return null;
         }
 
         public void UpdateBlogPost(int id, Post post)
