@@ -18,7 +18,7 @@ namespace AndenSemesterProjekt.Pages.Products
         /// _productService is a variable used to for dependency injection 
         /// </summary>
         public IProductService _productService;
-
+        // tester lige om Commit virker nu GitHub
         [BindProperty]
         public string Categories { get; set; }
 
