@@ -14,9 +14,9 @@ namespace AndenSemesterProjekt.Services
         {
             posts = MockPost.GetMockPosts();
         }
-        public Post CreateBlogPost(string information)
+        public async Task CreateBlogPost(string title, string information, string category)
         {
-            throw new NotImplementedException();
+            posts.Add(new Post(title, information, category, DateTime.Now));
         }
 
         public Post deleteBlogPost(int id)

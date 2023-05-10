@@ -51,6 +51,11 @@ nav ul {
     background-color: #886588ff;
 }
 
+/*Ql editor*/
+.ql-tooltip {
+    top: -50px !important;
+}
+
 .customfooter {
     background-color: #c8b2a5;
     width: 100%;
