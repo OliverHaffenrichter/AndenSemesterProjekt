@@ -22,5 +22,10 @@
         {
 
         }
+
+        public override string ToString()
+        {
+            return $"{Id}, {Title}, {Information}, {CreationDate}";
+        }
     }
 }

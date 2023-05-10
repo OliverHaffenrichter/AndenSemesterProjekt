@@ -3,6 +3,12 @@
 @{
 
 }
+
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 @if (Model.CurrentPage == 1)
 {
     <h1>Blog</h1>
@@ -10,19 +16,20 @@
      src="/data/Images/BlogTitleBillede.jpg"
      alt="Robots in Camp" />
 
-<div class="d-grid gap-2 bg-danger position-fixed top-50 end-0 m-3" style="padding:10px;">
-         <div class="bg-info"><p>Caregory 1</p></div>
-         <div><p>Caregory 2</p></div>
-         <div><p>Caregory 3</p></div>
-         
-</div>
+    <div class="d-grid gap-2 bg-danger position-fixed top-50 end-0 m-3" style="padding:10px;">
+        <div class="bg-info"><p>Caregory 1</p></div>
+        <div><p>Caregory 2</p></div>
+        <div><p>Caregory 3</p></div>
+
+    </div>
 
 
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+    <p>
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     </p>
 }
@@ -68,38 +75,56 @@
         <div class="container-fluid bg-danger">
             <p>@item.Title</p>
             <img class="col-md-8" src="/data/Images/PostTest.jpg">
-            <p>@item.Information</p>
+            <input id="ql-text-@item.Id" value="@item.Information" />
+            <div id="ql-display-@item.Id"></div>
+            <script>
+                var jdQuill = new Quill('#ql-display-' + @item.Id, {
+                    readOnly: true,
+                    value: this,
+                    theme: 'bubble'
+                });
+                //var ops =
+                //    [
+                //        { insert: 'Hello' },
+                //        { insert: 'World!', attributes: { bold: true } },
+                //        { insert: '\n' }
+                //    ]
+                console.info(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+                jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+            </script>
             <p>@item.Category</p>
             <p>@item.CreationDate</p>
-			<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteBlog" asp-route-id="@item.Id">Delete</a>
+            <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteBlog" asp-route-id="@item.Id">Delete</a>
         </div>
     }
 }
 
+
+
 @*Pagination start*@
 <div class="container-fluid m-2 p-2">
-@if (Model.CurrentPage != 1 && Model.Criteria == null)
-{
-    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
-}
-else
-{
-    <a class="btn btn-dark disabled">Forrige side</a>
-}
+    @if (Model.CurrentPage != 1 && Model.Criteria == null)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Forrige side</a>
+    }
 
-@for (int i = 1; i < @Model.TotalPages + 1; i++)
-{
-    <a asp-route-currentPage="@i">@i</a>
-}
-    @if (Model.CurrentPage < Model.TotalPages 
+    @for (int i = 1; i < @Model.TotalPages + 1; i++)
+    {
+        <a asp-route-currentPage="@i">@i</a>
+    }
+    @if (Model.CurrentPage < Model.TotalPages
     && Model.Criteria == null)
-{
-    <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
-}
-else
-{
-    <a class="btn btn-dark disabled">Næste side </a>
-}
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Næste side </a>
+    }
 </div>
 <div class="col-4">
     <form method="post" class="form-inline">

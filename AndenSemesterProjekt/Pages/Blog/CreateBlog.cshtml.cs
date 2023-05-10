@@ -9,6 +9,8 @@ namespace AndenSemesterProjekt.Pages.Blog
     {
         [BindProperty]
         public Post Post { get; set; }
+        [BindProperty]
+        public string Information { get; set; }
 
         private IBlogService _blogService;
 
@@ -21,9 +23,9 @@ namespace AndenSemesterProjekt.Pages.Blog
         {
         }
 
-        public IActionResult onPost()
+        public async Task<IActionResult> OnPost()
         {
-            _blogService.CreateBlogPost(Post.Title, Post.Information, Post.Category);
+            await _blogService.CreateBlogPost(Post.Title, Information, Post.Category);
             return RedirectToPage("DisplayBlog");
         }
     }

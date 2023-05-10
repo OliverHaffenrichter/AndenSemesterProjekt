@@ -1,49 +1,56 @@
 ﻿@page
 @model AndenSemesterProjekt.Pages.Blog.CreateBlogModel
 @{
-
-    <!-- Include stylesheet -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
-    <!-- Include the Quill library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-    <form method="post" class="form-inline">
-        <div class="input-group mb-3">
-            <input asp-for="@Model.Post.Title" class="form-control mr-1" placeholder="Enter Title" />
-        </div>
-            <div id="editor">
-            </div>
-        <div class="input-group mb-3">
-            <select>
-                <option>cat 1</option>
-                <option>cat 2</option>
-                <option>cat 3</option>
-                <option>cat 4</option>
-            </select>
-        </div>
-    </form>
-
-    //</div>
-    <!-- Create the editor container -->
-    <!-- Initialize Quill editor -->
-    <script>
-        var quill = new Quill('#editor', {
-            modules: {
-                toolbar:
-                    [
-                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                        [{ 'font': [] },],
-                        //[{ 'size': ['small', false, 'large', 'huge'] }],
-                        ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'background': [], }],
-                        ['link', 'image', 'video'],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '+1' }, { 'indent': '-1' }, { 'align': [] }],
-                        ['clean']
-                    ]
-            },
-            placeholder: 'Skriv blog opslaget',
-            readonly: true,
-            theme: 'snow'
-        });
-    </script>
 }
+
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<form method="post" id="form">
+    <div class="input-group mb-3">
+        <input asp-for="@Model.Post.Title" class="form-control mr-1" placeholder="Enter Title" />
+    </div>
+    <input type="hidden" id="jdr" asp-for="@Model.Information" />
+    <div id="editor">
+        @Html.Raw(Model.Information)
+    </div>
+    <div class="input-group mb-3">
+        <select>
+            <option>cat 1</option>
+            <option>cat 2</option>
+            <option>cat 3</option>
+            <option>cat 4</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" onclick="handleSubmit()" value="Create Post" class="btn btn-primary" />
+    </div>
+</form>
+<!-- Create the editor container -->
+<!-- Initialize Quill editor -->
+<script>
+    var jdQuill = new Quill('#editor', {
+        modules: {
+            toolbar:
+                [
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    [{ 'font': [] },],
+                    //[{ 'size': ['small', false, 'large', 'huge'] }],
+                    ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'background': [], }],
+                    ['link', 'image', 'video'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '+1' }, { 'indent': '-1' }, { 'align': [] }],
+                    ['clean']
+                ]
+        },
+        placeholder: 'Skriv blog opslaget',
+        theme: 'snow'
+    });
+    function handleSubmit() {
+        console.info('handleSubmit called');
+        console.info('quill contents: ' + JSON.stringify(jdQuill.getContents()));
+        document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
+    }
+
+</script>

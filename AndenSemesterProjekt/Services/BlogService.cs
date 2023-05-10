@@ -1,6 +1,7 @@
 ﻿using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Mock;
 using AndenSemesterProjekt.Models;
+using System.Diagnostics;
 
 namespace AndenSemesterProjekt.Services
 {
@@ -16,7 +17,9 @@ namespace AndenSemesterProjekt.Services
         }
         public async Task CreateBlogPost(string title, string information, string category)
         {
-            posts.Add(new Post(title, information, category, DateTime.Now));
+            Post Result = new Post(title, information, category, DateTime.Now);
+            posts.Add(Result);
+            Console.WriteLine(Result);
         }
 
         public Post deleteBlogPost(int id)
