@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AndenSemesterProjekt.Pages.Blog
 {
-    public class CreatePageModel : PageModel
+    public class CreatePostModel : PageModel
     {
         /// <summary>
         /// simple variable used to contain a Post Object
@@ -27,7 +27,7 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// dependency injection
         /// </summary>
         /// <param name="blogService"></param>
-        public CreatePageModel(IBlogService blogService)
+        public CreatePostModel(IBlogService blogService)
         {
             _blogService = blogService;
         }
