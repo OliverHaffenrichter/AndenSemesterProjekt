@@ -74,8 +74,7 @@
     {
         <div class="container-fluid bg-danger">
             <p>@item.Title</p>
-            <img class="col-md-8" src="/data/Images/PostTest.jpg">
-            <input id="ql-text-@item.Id" value="@item.Information" />
+            <input hidden id="ql-text-@item.Id" value="@item.Information" />
             <div id="ql-display-@item.Id"></div>
             <script>
                 var jdQuill = new Quill('#ql-display-' + @item.Id, {

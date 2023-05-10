@@ -1,5 +1,5 @@
 ﻿@page
-@model AndenSemesterProjekt.Pages.Blog.CreateBlogModel
+@model AndenSemesterProjekt.Pages.Blog.CreatePageModel
 @{
 }
 
@@ -8,6 +8,7 @@
 <!-- Include the Quill library -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
+<!--Form containg all the information for creating a new blog post-->
 <form method="post" id="form">
     <div class="input-group mb-3">
         <input asp-for="@Model.Post.Title" class="form-control mr-1" placeholder="Enter Title" />
@@ -28,7 +29,7 @@
         <input type="submit" onclick="handleSubmit()" value="Create Post" class="btn btn-primary" />
     </div>
 </form>
-<!-- Create the editor container -->
+
 <!-- Initialize Quill editor -->
 <script>
     var jdQuill = new Quill('#editor', {
@@ -47,10 +48,10 @@
         placeholder: 'Skriv blog opslaget',
         theme: 'snow'
     });
+    // Function that gets called onClick when pressing the create post button
     function handleSubmit() {
         console.info('handleSubmit called');
         console.info('quill contents: ' + JSON.stringify(jdQuill.getContents()));
         document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
     }
-
 </script>

@@ -5,16 +5,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AndenSemesterProjekt.Pages.Blog
 {
-    public class CreateBlogModel : PageModel
+    public class CreatePageModel : PageModel
     {
+        /// <summary>
+        /// simple variable used to contain a Post Object
+        /// </summary>
         [BindProperty]
         public Post Post { get; set; }
+        /// <summary>
+        /// a variable for containing the information from the quill editor
+        /// </summary>
         [BindProperty]
         public string Information { get; set; }
 
+        /// <summary>
+        /// variable used for dependency inject for the BlogService
+        /// </summary>
         private IBlogService _blogService;
 
-        public CreateBlogModel(IBlogService blogService)
+        /// <summary>
+        /// dependency injection
+        /// </summary>
+        /// <param name="blogService"></param>
+        public CreatePageModel(IBlogService blogService)
         {
             _blogService = blogService;
         }
@@ -23,6 +36,10 @@ namespace AndenSemesterProjekt.Pages.Blog
         {
         }
 
+        /// <summary>
+        /// OnPost CreatePost
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPost()
         {
             await _blogService.CreateBlogPost(Post.Title, Information, Post.Category);
