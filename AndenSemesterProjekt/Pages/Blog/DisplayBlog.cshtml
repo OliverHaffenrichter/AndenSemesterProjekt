@@ -35,12 +35,13 @@
 }
 
 <div class="col-4">
-    <form method="post" class="form-inline">
+    @await Html.PartialAsync("/Pages/Shared/_SearchBar.cshtml", Model)
+    @*<form method="post" class="form-inline">
         <div class="input-group mb-3">
             <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
             <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
         </div>
-    </form>
+    </form>*@
 </div>
 <div class="container-fluid m-2 p-2">
     @if (Model.CurrentPage != 1 && Model.Criteria == null)
@@ -124,12 +125,7 @@
     }
 </div>
 <div class="col-4">
-    <form method="post" class="form-inline">
-        <div class="input-group mb-3">
-            <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
-            <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
-        </div>
-    </form>
+    @await Html.PartialAsync("/Pages/Shared/_SearchBar.cshtml", Model)
 </div>
 @*Pagination End*@
 
