@@ -6,11 +6,11 @@ using AndenSemesterProjekt.Interfaces;
 
 namespace AndenSemesterProjekt.Pages.Blog
 {
-    public class DeleteBlogModel : PageModel
+    public class DeletePageModel : PageModel
     {
         private IBlogService _BlogService;
 
-        public DeleteBlogModel(IBlogService blogService)
+        public DeletePageModel(IBlogService blogService)
         {
             _BlogService = blogService;
         }
