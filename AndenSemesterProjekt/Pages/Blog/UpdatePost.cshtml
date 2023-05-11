@@ -1,0 +1,60 @@
+﻿@page
+@model AndenSemesterProjekt.Pages.Blog.UpdatePostModel
+@{
+}
+
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!--Form containg all the information for creating a new blog post-->
+<form method="post" id="form">
+    <div class="input-group mb-3">
+        <input asp-for="@Model.Post.Title" class="form-control mr-1" placeholder="Enter Title" />
+    </div>
+    <input type="hidden" id="jdr" asp-for="@Model.Information" />
+    <div id="editor">
+        @Html.Raw(Model.Information)
+    </div>
+    <div class="input-group mb-3">
+        <select>
+            <option>cat 1</option>
+            <option>cat 2</option>
+            <option>cat 3</option>
+            <option>cat 4</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" onclick="handleSubmit()" value="Create Post" class="btn btn-primary" />
+    </div>
+</form>
+
+<!-- Initialize Quill editor -->
+<script>
+    var jdQuill = new Quill('#editor', {
+        modules: {
+            toolbar:
+                [
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    [{ 'font': [] },],
+                    //[{ 'size': ['small', false, 'large', 'huge'] }],
+                    ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'background': [], }],
+                    ['link', 'image', 'video'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '+1' }, { 'indent': '-1' }, { 'align': [] }],
+                    ['clean']
+                ]
+        },
+        placeholder: 'Skriv blog opslaget',
+        theme: 'snow'
+    });
+    // Function that gets called onClick when pressing the create post button
+    function handleSubmit() {
+        console.info('handleSubmit called');
+        console.info('quill contents: ' + JSON.stringify(jdQuill.getContents()));
+        document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
+    }
+    console.info(JSON.parse(document.getElementById('ql-text-').value));
+    jdQuill.setContents(JSON.parse(document.getElementById('ql-text-').value));
+</script>
+
