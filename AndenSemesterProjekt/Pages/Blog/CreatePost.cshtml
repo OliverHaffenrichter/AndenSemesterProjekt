@@ -35,19 +35,21 @@
     var jdQuill = new Quill('#editor', {
         modules: {
             toolbar:
-                [
+            {
+                container: [
                     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
                     [{ 'font': [] },],
                     //[{ 'size': ['small', false, 'large', 'huge'] }],
                     ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'background': [], }],
                     ['link', 'image', 'video'],
                     [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '+1' }, { 'indent': '-1' }, { 'align': [] }],
-                    ['clean']
-                ]
+                    ['clean']],
+            }
         },
         placeholder: 'Skriv blog opslaget',
         theme: 'snow'
     });
+
     // Function that gets called onClick when pressing the create post button
     function handleSubmit() {
         console.info('handleSubmit called');

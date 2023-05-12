@@ -76,11 +76,12 @@ namespace AndenSemesterProjekt.Services
                 }
             }
             return null;
+            //return posts.Where(p => p.Id == id).First();
         }
 
         public void UpdateBlogPost(int id, Post post)
         {
-            throw new NotImplementedException();
+            posts[id] = post;
         }
     }
 }
