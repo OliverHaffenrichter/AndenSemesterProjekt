@@ -59,7 +59,6 @@
 
 @*Display the blog posts*@
 
-
 <div class="blogmain">
     <div class="blogspawnmain">
 
@@ -108,6 +107,7 @@
                 </article>
             }
         }
+
     </div>
     <aside class="blogaside">
         <h3>SenesteOpslag</h3>
@@ -128,7 +128,44 @@
         </ul>
     </aside>
 </div>
+<div class="blogsearchparent m-2 p-2">
+    <div class="col-4">
+        @*Henter søgefunktionen fra /Pages/Shared/Partials`/_SearchBar.cshtml*@
+        @await Html.PartialAsync("/Pages/Shared/Partials/_SearchBar.cshtml", Model)
+        @*        <form method="post" class="form-inline">
+        <div class="input-group mb-3">
+        <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
+        <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
+        </div>
+        </form>*@
+    </div>
+    <div class="blogpagination">
+        @*Henter Pagination html koden fra /Pages/Shared/Partials/Pagination.cshtml*@
+        @await Html.PartialAsync("/Pages/Shared/Partials/_Pagination.cshtml", Model)
+        @*        @if (Model.CurrentPage != 1 && Model.Criteria == null)
+        {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
+        }
+        else
+        {
+        <a class="btn btn-dark disabled">Forrige side</a>
+        }
 
+        @for (int i = 1; i < @Model.TotalPages + 1; i++)
+        {
+        <a asp-route-currentPage="@i">@i</a>
+        }
+        @if (Model.CurrentPage < Model.TotalPages
+        && Model.Criteria == null)
+        {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
+        }
+        else
+        {
+        <a class="btn btn-dark disabled">Næste side </a>
+        }*@
+    </div>
+</div>
 <img id="testImage" />
 @*<script>
     var image = new Image();
@@ -136,17 +173,5 @@
     document.body.appendChild(image);
     document.getElementById('testImage').value = image;
 </script>*@
-
-@*Pagination start*@
-
-<div class="container-fluid m-2 p-2">
-    @*Henter Pagination html koden fra /Pages/Shared/Partials/Pagination.cshtml*@
-    @await Html.PartialAsync("/Pages/Shared/Partials/_Pagination.cshtml", Model)
-</div>
-<div class="col-4">
-    @*Henter søgefunctionen fra /Pages/Shared/Partials`/_SearchBar.cshtml*@
-    @await Html.PartialAsync("/Pages/Shared/Partials/_SearchBar.cshtml", Model)
-</div>
-@*Pagination End*@
 
 @*<a asp-route-currentPage="@Model.GoUpPage()" class="btn btn-primary">Next Page</a>*@
