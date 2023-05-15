@@ -11,84 +11,109 @@
 
 @if (Model.CurrentPage == 1)
 {
-    <h1>Blog</h1>
-    <img class="img-fluid" style="object-fit: cover; object-position: center; width: 100vw; height: 100vh; margin-bottom: 100px;"
-     src="/data/Images/BlogTitleBillede.jpg"
-     alt="Robots in Camp" />
-
-    <div class="d-grid gap-2 bg-danger position-fixed top-50 end-0 m-3" style="padding:10px;">
-        <div class="bg-info"><p>Caregory 1</p></div>
-        <div><p>Caregory 2</p></div>
-        <div><p>Caregory 3</p></div>
-
+    <div class="pagebanner blogbanner">
+        <div class="pagetitle">
+            <h1>Blog</h1>
+        </div>
     </div>
-
-
-    <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    </p>
 }
 
-<div class="col-4">
-    @*Henter søgefunctionen fra /Pages/Shared/Partials`/_SearchBar.cshtml*@
-    @await Html.PartialAsync("/Pages/Shared/Partials/_SearchBar.cshtml", Model)
+<div class="blogsearchparent m-2 p-2">
+    <div class="col-4">
+        @*Henter søgefunktionen fra /Pages/Shared/Partials`/_SearchBar.cshtml*@
+        @await Html.PartialAsync("/Pages/Shared/Partials/_SearchBar.cshtml", Model)
+        @*        <form method="post" class="form-inline">
+        <div class="input-group mb-3">
+        <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
+        <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
+        </div>
+        </form>*@
+    </div>
+    <div class="blogpagination">
+        @*Henter Pagination html koden fra /Pages/Shared/Partials/Pagination.cshtml*@
+        @await Html.PartialAsync("/Pages/Shared/Partials/_Pagination.cshtml", Model)
+        @*        @if (Model.CurrentPage != 1 && Model.Criteria == null)
+        {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
+        }
+        else
+        {
+        <a class="btn btn-dark disabled">Forrige side</a>
+        }
+
+        @for (int i = 1; i < @Model.TotalPages + 1; i++)
+        {
+        <a asp-route-currentPage="@i">@i</a>
+        }
+        @if (Model.CurrentPage < Model.TotalPages
+        && Model.Criteria == null)
+        {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
+        }
+        else
+        {
+        <a class="btn btn-dark disabled">Næste side </a>
+        }*@
+    </div>
 </div>
 
-<div class="container-fluid m-2 p-2">
-    @*Henter Pagination html koden fra /Pages/Shared/Partials/Pagination.cshtml*@
-    @await Html.PartialAsync("/Pages/Shared/Partials/_Pagination.cshtml", Model)
-</div>
 @*Display the blog posts*@
 
-@if (Model.Posts != null)
-{
-    @foreach (var item in Model.Posts)
-    {
-        <div class="container-fluid bg-danger">
-            <p>@item.Title</p>
-            <input hidden id="ql-text-@item.Id" value="@item.Information" />
-            <div id="ql-display-@item.Id">
 
-            </div>
-            <script>
-                var jdQuill = new Quill('#ql-display-' + @item.Id, {
-                    readOnly: true,
-                    value: this,
-                    theme: 'bubble'
-                });
-                //var ops =
-                //    [
-                //        { insert: 'Hello' },
-                //        { insert: 'World!', attributes: { bold: true } },
-                //        { insert: '\n' }
-                //    ]
-                var JsonObject = JSON.parse(document.getElementById('ql-text-' + @item.Id).value);
-                console.info(JsonObject);
+<div class="blogmain">
+    <div class="blogspawnmain">
 
-                for (let x in JsonObject) {
-                    for (let y in JsonObject[x])
-                    {
-                        console.log(y + ": " + JsonObject[x][y]);
-                    }
-                }
-                jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+        @if (Model.Posts != null)
+        {
+            @foreach (var item in Model.Posts)
+            {
+                <article class="container-fluid blogmaincontainer p-2">
+                    <div class="bloginformation p-2">
+                        <h2 class="blogtitle">@item.Title</h2>
+                        <input hidden id="ql-text-@item.Id" value="@item.Information" />
+                        <div id="ql-display-@item.Id">
+                        </div>
+                        <script>
+                            var jdQuill = new Quill('#ql-display-' + @item.Id, {
+                                readOnly: true,
+                                value: this,
+                                theme: 'bubble'
+                            });
+                            //var ops =
+                            //    [
+                            //        { insert: 'Hello' },
+                            //        { insert: 'World!', attributes: { bold: true } },
+                            //        { insert: '\n' }
+                            //    ]
+                            var JsonObject = JSON.parse(document.getElementById('ql-text-' + @item.Id).value);
+                            console.info(JsonObject);
 
-                //var message_lines = document.getElementById('ql-display-' + @item.Id).getClientRects();
-                //console.info(message_lines);
-                //var amount_of_lines = message_lines.length;
-                //console.info("lines amount "+message_container.getClientRects().length);
-            </script>
-            <p>@item.CreationDate</p>
-            <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeletePost" asp-route-id="@item.Id">Delete</a>
-            <a class="btn btn-danger btn-sm " type="button" title="Update" asp-page="UpdatePost" asp-route-id="@item.Id">Update</a>
-        </div>
-    }
-}
+                            for (let x in JsonObject) {
+                                for (let y in JsonObject[x]) {
+                                    console.log(y + ": " + JsonObject[x][y]);
+                                }
+                            }
+                            jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+
+                                                        //var message_lines = document.getElementById('ql-display-' + @item.Id).getClientRects();
+                                                        //console.info(message_lines);
+                                                        //var amount_of_lines = message_lines.length;
+                                                        //console.info("lines amount "+message_container.getClientRects().length);
+
+                        </script>
+                        <p>@item.CreationDate</p>
+                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeletePost" asp-route-id="@item.Id">Delete</a>
+                        <a class="btn btn-danger btn-sm " type="button" title="Update" asp-page="UpdatePost" asp-route-id="@item.Id">Update</a>
+                    </div>
+                </article>
+            }
+        }
+    </div>
+    <aside class="blogaside">
+        <h3>categtoriessz</h3>
+    </aside>
+</div>
+
 <img id="testImage" />
 @*<script>
     var image = new Image();
