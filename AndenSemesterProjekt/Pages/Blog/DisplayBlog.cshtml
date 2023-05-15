@@ -49,7 +49,7 @@
 {
     @foreach (var item in Model.Posts)
     {
-        <div style="display: inline" class="container-fluid bg-danger">
+        <div class="container-fluid bg-danger">
             <p>@item.Title</p>
             <input hidden id="ql-text-@item.Id" value="@item.Information" />
             <div id="ql-display-@item.Id">
@@ -71,7 +71,10 @@
                 console.info(JsonObject);
 
                 for (let x in JsonObject) {
-                    console.log(x + ": " + JsonObject[x]);
+                    for (let y in JsonObject[x])
+                    {
+                        console.log(y + ": " + JsonObject[x][y]);
+                    }
                 }
                 jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
 
@@ -80,7 +83,6 @@
                 //var amount_of_lines = message_lines.length;
                 //console.info("lines amount "+message_container.getClientRects().length);
             </script>
-            <p>@item.Category</p>
             <p>@item.CreationDate</p>
             <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeletePost" asp-route-id="@item.Id">Delete</a>
             <a class="btn btn-danger btn-sm " type="button" title="Update" asp-page="UpdatePost" asp-route-id="@item.Id">Update</a>

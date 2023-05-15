@@ -42,7 +42,7 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// <returns></returns>
         public async Task<IActionResult> OnPost()
         {
-            await _blogService.CreateBlogPost(Post.Title, Information, Post.Category);
+            await _blogService.CreateBlogPost(Post.Title, Information);
             return RedirectToPage("DisplayBlog");
         }
     }

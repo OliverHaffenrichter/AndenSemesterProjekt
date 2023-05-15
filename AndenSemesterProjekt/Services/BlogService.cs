@@ -15,9 +15,9 @@ namespace AndenSemesterProjekt.Services
         {
             posts = MockPost.GetMockPosts();
         }
-        public async Task CreateBlogPost(string title, string information, string category)
+        public async Task CreateBlogPost(string title, string information)
         {
-            Post Result = new Post(title, information, category, DateTime.Now);
+            Post Result = new Post(title, information, DateTime.Now);
             posts.Add(Result);
             Console.WriteLine(Result);
         }
@@ -57,8 +57,7 @@ namespace AndenSemesterProjekt.Services
             string searchString = criteria.Replace(" ", ""); ;
             if (criteria != null)
             {
-                return posts.Where(c => c.Title.Contains(searchString.ToLower())
-                || c.Category.Contains(searchString.ToLower())).ToList();
+                return posts.Where(c => c.Title.Contains(searchString.ToLower())).ToList();
             }
             else
             {
