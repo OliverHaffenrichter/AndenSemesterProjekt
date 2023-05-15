@@ -14,6 +14,7 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// Posts returns the amount of blog posts being displayed on the page
         /// </summary>
         public List<Post> Posts { get; set; }
+        public List<Post> NewestPosts { get; set; }
         /// <summary>
         /// _blogService is a variable used to for dependency injection 
         /// </summary>
@@ -66,7 +67,7 @@ namespace AndenSemesterProjekt.Pages.Blog
             {
                 return Page();
             }
-
+            NewestPosts = _blogService.GetRecentBlogPosts();
             CurrentPage = currentPage;
             Posts = _blogService.GetAllBlogPosts()
                 .OrderBy(p => p.Id)

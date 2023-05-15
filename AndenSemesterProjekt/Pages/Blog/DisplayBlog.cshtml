@@ -110,7 +110,15 @@
         }
     </div>
     <aside class="blogaside">
-        <h3>categtoriessz</h3>
+        <h3>SenesteOpslag</h3>
+        <ul>
+        @foreach (var item in Model.NewestPosts)
+        {
+                <li><a asp-page="DisplayPost" asp-route-id="@item.Id">@item.Title</a></li>
+            }
+        </ul>
+        <h3>Arkiv</h3>
+        <a>2023</a>
     </aside>
 </div>
 

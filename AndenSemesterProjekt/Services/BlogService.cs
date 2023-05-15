@@ -65,6 +65,11 @@ namespace AndenSemesterProjekt.Services
             }
         }
 
+        public List<Post> GetRecentBlogPosts()
+        {
+            return posts.OrderBy(p => p.Id).Take(5).ToList();
+        }
+
         public Post GetBlogPostById(int id)
         {
             foreach (Post post in posts)

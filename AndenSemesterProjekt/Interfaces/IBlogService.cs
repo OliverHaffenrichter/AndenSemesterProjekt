@@ -10,6 +10,7 @@ namespace AndenSemesterProjekt.Interfaces
         List<Post> GetAllBlogPosts();
         List<Post> GetAllBlogPostsByCategory(string category);
         List<Post> GetAllBlogPostsByCriteria(string criteria);
+        List<Post> GetRecentBlogPosts();
         Post GetBlogPostById(int id);
     }
 }
