@@ -22,7 +22,7 @@ namespace AndenSemesterProjekt.Services
         {
             foreach (var product in products) 
             { 
-                if(product != null && !productCategories.Contains(product.Category.ToLower()))
+                if(product.Category != null && !productCategories.Contains(product.Category.ToLower()))
                 {
                     productCategories.Add(product.Category);
                 }
