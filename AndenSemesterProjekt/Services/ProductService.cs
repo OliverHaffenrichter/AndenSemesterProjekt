@@ -9,13 +9,7 @@ namespace AndenSemesterProjekt.Services
     {
 
         private List<Product> products = new List<Product>();
-        private List<string> productCategories = new List<string>()
-        { 
-            new ("Menditation"),
-            new ("Styrke Træning"),
-            new ("yaddaddaa"),
-            new ("Fingleburm")
-        };
+        private List<string> productCategories = new List<string>();
 
       
         public ProductService()
@@ -26,6 +20,14 @@ namespace AndenSemesterProjekt.Services
 
         public List<string> GetProductCategories()
         {
+            foreach (var product in products) 
+            { 
+                if(product != null && !productCategories.Contains(product.Category.ToLower()))
+                {
+                    productCategories.Add(product.Category);
+                }
+            
+            }
             return productCategories;
         }
         public Product CreateProduct(Product product)
