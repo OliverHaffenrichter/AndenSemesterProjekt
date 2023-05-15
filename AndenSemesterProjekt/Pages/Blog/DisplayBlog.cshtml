@@ -49,10 +49,12 @@
 {
     @foreach (var item in Model.Posts)
     {
-        <div class="container-fluid bg-danger">
+        <div style="display: inline" class="container-fluid bg-danger">
             <p>@item.Title</p>
             <input hidden id="ql-text-@item.Id" value="@item.Information" />
-            <div id="ql-display-@item.Id"></div>
+            <div id="ql-display-@item.Id">
+
+            </div>
             <script>
                 var jdQuill = new Quill('#ql-display-' + @item.Id, {
                     readOnly: true,
@@ -65,8 +67,18 @@
                 //        { insert: 'World!', attributes: { bold: true } },
                 //        { insert: '\n' }
                 //    ]
-                console.info(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+                var JsonObject = JSON.parse(document.getElementById('ql-text-' + @item.Id).value);
+                console.info(JsonObject);
+
+                for (let x in JsonObject) {
+                    console.log(x + ": " + JsonObject[x]);
+                }
                 jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+
+                //var message_lines = document.getElementById('ql-display-' + @item.Id).getClientRects();
+                //console.info(message_lines);
+                //var amount_of_lines = message_lines.length;
+                //console.info("lines amount "+message_container.getClientRects().length);
             </script>
             <p>@item.Category</p>
             <p>@item.CreationDate</p>
