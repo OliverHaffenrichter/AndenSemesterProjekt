@@ -9,11 +9,24 @@ namespace AndenSemesterProjekt.Services
     {
 
         private List<Product> products = new List<Product>();
+        private List<string> productCategories = new List<string>();
 
-      
         public ProductService()
         {
             products = MockProduct.GetMockProduct();
+        }
+
+        public List<string> GetProductCategories()
+        {
+            foreach (var product in products)
+            {
+                if (product.Category != null && !productCategories.Contains(product.Category.ToLower()))
+                {
+                    productCategories.Add(product.Category);
+                }
+
+            }
+            return productCategories;
         }
 
 
