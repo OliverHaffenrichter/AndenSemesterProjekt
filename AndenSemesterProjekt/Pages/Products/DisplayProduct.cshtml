@@ -1,0 +1,33 @@
+﻿@page
+@model AndenSemesterProjekt.Pages.Products.DisplayProductModel
+@{
+}
+
+<h1>PRODUCTS!!!!!!</h1>
+
+<div>
+        <li>Cat1</li>
+        <li>Cat2</li>
+        <li>Cat3</li>
+        <li>Cat4</li>
+        <li>Cat5</li>
+        <li>Cat6</li>
+        <li>Cat7</li>
+    </ul>
+
+</div>
+
+@if (Model.products != null)
+{
+    @foreach (var item in Model.products)
+    {
+        <div class="container-fluid bg-danger">
+            <p>@item.Title</p>
+            <p>@item.Description</p>
+            @*<img class="col-md-8" src="/data/Images/PostTest.jpg">*@
+            <p>@item.Pris</p>
+            <p>@item.Category</p>
+            <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+        </div>
+    }
+}

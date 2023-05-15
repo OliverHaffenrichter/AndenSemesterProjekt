@@ -1,0 +1,13 @@
+﻿@page
+@model AndenSemesterProjekt.Pages.Blog.DeletePageModel
+@{
+}
+
+<h1>Delete Confirmation></h1>
+<div class="alert alert-danger">
+	<h5>Vil du slette post - @Model.post.Title</h5>
+	<form method="post">
+		<button type="submit" class="btn btn-danger">Yes</button>
+		<a class="btn btn-primary" asp-page="/Blog/DisplayBlog">No</a>
+	</form>
+</div>
