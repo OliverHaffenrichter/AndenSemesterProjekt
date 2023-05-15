@@ -87,5 +87,10 @@ namespace AndenSemesterProjekt.Services
         {
             posts[id] = post;
         }
+
+        public List<Post> GetAllBlogPostsByYear(int year)
+        {
+            return posts.Where(p => p.CreationDate.Year == year).ToList();
+        }
     }
 }

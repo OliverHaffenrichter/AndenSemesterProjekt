@@ -112,13 +112,20 @@
     <aside class="blogaside">
         <h3>SenesteOpslag</h3>
         <ul>
-        @foreach (var item in Model.NewestPosts)
-        {
+            @foreach (var item in Model.NewestPosts)
+            {
                 <li><a asp-page="DisplayPost" asp-route-id="@item.Id">@item.Title</a></li>
             }
         </ul>
         <h3>Arkiv</h3>
-        <a>2023</a>
+        <ul>
+            @for (int i = Model.MaxYear; i >= Model.MinYear; i--)
+            {
+                <li>
+                    <a asp-page-handler="BlogByYear" asp-route-year="@i">@i</a>
+                </li>
+            }
+        </ul>
     </aside>
 </div>
 

@@ -14,6 +14,10 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// Posts returns the amount of blog posts being displayed on the page
         /// </summary>
         public List<Post> Posts { get; set; }
+
+        /// <summary>
+        /// NewestPosts returns the five newest posts from posts
+        /// </summary>
         public List<Post> NewestPosts { get; set; }
         /// <summary>
         /// _blogService is a variable used to for dependency injection 
@@ -26,6 +30,9 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// </summary>
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; }
+
+        public int MinYear { get; set; } = 0;
+        public int MaxYear { get; set; } = 0;
 
         /// <summary>
         /// Pagesize is a variable containing the size of the each page for the pagination
@@ -69,11 +76,30 @@ namespace AndenSemesterProjekt.Pages.Blog
             }
             NewestPosts = _blogService.GetRecentBlogPosts();
             CurrentPage = currentPage;
+  
             Posts = _blogService.GetAllBlogPosts()
                 .OrderBy(p => p.Id)
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
+            DisplayYear();
+            return Page();
+        }
+
+        public IActionResult OnGetBlogByYear(int year)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            NewestPosts = _blogService.GetRecentBlogPosts();
+
+            Posts = _blogService.GetAllBlogPostsByYear(year)
+                .OrderBy(p => p.Id)
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+            DisplayYear();
             return Page();
         }
 
@@ -91,5 +117,12 @@ namespace AndenSemesterProjekt.Pages.Blog
             Posts = _blogService.GetAllBlogPostsByCriteria(Criteria);
             return Page();
         }
+
+        private void DisplayYear()
+        {
+            MinYear = _blogService.GetAllBlogPosts().Min(p => p.CreationDate.Year);
+            MaxYear = _blogService.GetAllBlogPosts().Max(p => p.CreationDate.Year);
+        }
+
     }
 }
