@@ -12,6 +12,7 @@ namespace AndenSemesterProjekt.Interfaces
         List<Product> GetProductByCategory(string category);
         List<Product> GetProductByCriteria(string criteria);
         Product GetProductById(int id);
+        List<string> GetProductCategories();
 
       
     }

@@ -9,6 +9,13 @@ namespace AndenSemesterProjekt.Services
     {
 
         private List<Product> products = new List<Product>();
+        private List<string> productCategories = new List<string>()
+        { 
+            new ("Menditation"),
+            new ("Styrke Træning"),
+            new ("yaddaddaa"),
+            new ("Fingleburm")
+        };
 
       
         public ProductService()
@@ -17,6 +24,10 @@ namespace AndenSemesterProjekt.Services
         }
 
 
+        public List<string> GetProductCategories()
+        {
+            return productCategories;
+        }
         public Product CreateProduct(Product product)
         {
             throw new NotImplementedException();
