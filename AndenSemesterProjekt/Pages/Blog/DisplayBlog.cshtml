@@ -20,7 +20,6 @@
         <div class="bg-info"><p>Caregory 1</p></div>
         <div><p>Caregory 2</p></div>
         <div><p>Caregory 3</p></div>
-
     </div>
 
 
@@ -70,12 +69,12 @@
                 var JsonObject = JSON.parse(document.getElementById('ql-text-' + @item.Id).value);
                 console.info(JsonObject);
 
-                for (let x in JsonObject) {
-                    for (let y in JsonObject[x])
-                    {
-                        console.log(y + ": " + JsonObject[x][y]);
-                    }
-                }
+                //for (let x in JsonObject) {
+                //    for (let y in JsonObject[x])
+                //    {
+                //        console.log(y + ": " + JsonObject[x][y]);
+                //    }
+                //}
                 jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
 
                 //var message_lines = document.getElementById('ql-display-' + @item.Id).getClientRects();
