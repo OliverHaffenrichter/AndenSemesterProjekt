@@ -1,27 +1,30 @@
-﻿@page
-@model AndenSemesterProjekt.Pages.Products.DisplayCategoriesModel
+﻿@page "/DisplayProducts/{category}"
+@model AndenSemesterProjekt.Pages.Products.DisplayProductModel
 @{
 }
 
+<h1>PRODUCTS!!!!!!</h1>
 
 <div class="row row-cols-3 g-2">
-    @foreach (var item in Model.Categories)
+    @foreach (var item in Model.products)
     {
         <div class="flex-column">
             <div class="card">
-
                 <div class="card-header">
-                    <a asp-page="DisplayProducts" asp-page-handler="OnGetProductsByCat" asp-route-category="@item.ToLower()">
-                    <h1>@item</h1>
-                    </a>
+                  
+                        <h1>@item.Title</h1>
                     <div class="card-img">
                         <h2>Card Image</h2>
                     </div>
                     <div class="card-body">
                         <h3>Card Body</h3>
+                        <h3>@item.Description</h3>
                     </div>
                     <div class="card-footer">
                         <h3>Card Footer</h3>
+                        <p>@item.Category</p>
+                        <p>@item.Price</p>
+                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteProduct" asp-route-id="@item.Id">Delete</a>
                     </div>
                 </div>
             </div>
