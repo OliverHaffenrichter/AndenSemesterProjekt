@@ -54,11 +54,23 @@ nav ul {
 
 .btn {
     background-color: #886588ff;
+    width: fit-content;
+    font-size: 2vh;
+    white-space: nowrap;
 }
 
 /*Ql editor*/
 .ql-tooltip {
     top: -50px !important;
+}
+
+.ql-editor {
+    overflow: hidden !important;
+}
+
+.ql-editor img {
+    width: auto;
+    height: auto;
 }
 
 .customfooter {
@@ -208,7 +220,7 @@ nav ul {
 .blogmaincontainer {
     display: flex;
     width: 100%;
-    max-height: 22vh;
+    max-height: 50vh;
     overflow: hidden;
 }
 
