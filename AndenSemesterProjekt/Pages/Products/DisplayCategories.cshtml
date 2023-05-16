@@ -11,9 +11,11 @@
             <div class="card">
 
                 <div class="card-header">
+                    <form method="post">
                     <a asp-page="DisplayProducts" asp-page-handler="OnGetProductsByCat" asp-route-category="@item.ToLower()">
                     <h1>@item</h1>
                     </a>
+                    </form>
                     <div class="card-img">
                         <h2>Card Image</h2>
                     </div>

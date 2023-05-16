@@ -33,7 +33,7 @@ namespace AndenSemesterProjekt.Pages.Products
             if (deletedProduct == null)
                 return RedirectToPage("/NotFound");
 
-            return RedirectToPage("DisplayProducts");
+            return RedirectToPage("/Products/DisplayProducts");
         }
     }
 }
