@@ -36,9 +36,16 @@ namespace AndenSemesterProjekt.Pages.Products
             {
                 return Page();
             }
+            //if (category != null) 
+            //{
+            //    products = _productService.GetProductByCategory(category);
 
-            products = _productService.GetAllProducts();
-            return Page();
+            //    return Page();
+            //}
+            //else
+
+                products = _productService.GetAllProducts();
+                return Page();
         }
 
         public IActionResult OnGetProductsByCat(string category)
@@ -50,7 +57,7 @@ namespace AndenSemesterProjekt.Pages.Products
             }
 
             products = _productService.GetProductByCategory(category);
-            
+
             return Page();
         }
     }

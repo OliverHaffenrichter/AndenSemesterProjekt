@@ -4,6 +4,7 @@
 }
 
 
+<a asp-page="DisplayProducts"><h1>Vis alle ydelser</h1></a>
 <div class="row row-cols-3 g-2">
     @foreach (var item in Model.Categories)
     {
@@ -12,7 +13,7 @@
 
                 <div class="card-header">
                     <form method="post">
-                    <a asp-page="DisplayProducts" asp-page-handler="OnGetProductsByCat" asp-route-category="@item.ToLower()">
+                        <a asp-page="/Products/DisplayProducts" asp-page-handler="ProductsByCat" asp-route-category="@item.ToLower()">
                     <h1>@item</h1>
                     </a>
                     </form>
