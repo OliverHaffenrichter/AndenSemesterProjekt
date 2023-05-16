@@ -1,5 +1,6 @@
 using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Drawing.Printing;
@@ -28,5 +29,9 @@ namespace AndenSemesterProjekt.Pages.Products
 
             return Page();
         }
+
+
+      
+        
     }
 }
