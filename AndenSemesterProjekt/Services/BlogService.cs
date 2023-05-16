@@ -90,7 +90,7 @@ namespace AndenSemesterProjekt.Services
 
         public List<Post> GetAllBlogPostsByYear(int year)
         {
-            return posts.Where(p => p.CreationDate.Year == year).ToList();
+            return posts.Where(p => p.CreationDate.Year == year).Take(10).ToList();
         }
     }
 }

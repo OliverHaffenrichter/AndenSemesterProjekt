@@ -18,10 +18,37 @@
         @Html.Raw(Model.Information)
     </div>
     <div class="form-group">
-        <input type="submit" onclick="handleSubmit()" value="Create Post" class="btn btn-primary" />
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            CreatePost
+        </button>
+        <!-- Modal -->
+        <script>
+            var myModal = document.getElementById('myModal')
+            var myInput = document.getElementById('myInput')
+
+            myModal.addEventListener('shown.bs.modal', function () {
+                myInput.focus()
+            })
+        </script>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Er du sikker på du gerne vil poste opslaget?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej</button>
+                        <input type="submit" onclick="handleSubmit()" value="Post opslaget" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
-
 <!-- Initialize Quill editor -->
 <script>
     var jdQuill = new Quill('#editor', {
