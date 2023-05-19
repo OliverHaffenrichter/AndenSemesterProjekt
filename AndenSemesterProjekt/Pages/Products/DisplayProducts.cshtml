@@ -13,8 +13,11 @@
         <div class="flex-column">
             <div class="card">
                 <div class="card-header">
-                  
+                  <form method="post">
+                        <a asp-page="/Products/ViewProduct" asp-page-handler="OnGet" asp-route-category="@item.Id">
                         <h1>@item.Title</h1>
+                        </a>
+                        </form>
                     <div class="card-img">
                         <h2>Card Image</h2>
                     </div>

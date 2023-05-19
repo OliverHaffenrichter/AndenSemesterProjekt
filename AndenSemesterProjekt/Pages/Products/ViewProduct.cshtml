@@ -1,0 +1,36 @@
+﻿@page
+@model AndenSemesterProjekt.Pages.Products.ViewProductModel
+@{
+}
+
+<h2>THE PRODUCT</h2>
+
+
+
+
+<div class="row row-cols-3 g-2">
+  <div class="flex-column">
+            <div class="card">
+                <div class="card-header">
+                   
+                        
+                     <h1>@Model._product.Id</h1>
+                     <h1>@Model._product.Title</h1>
+                    
+                    <div class="card-img">
+                        <h2>Card Image</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Card Body</h3>
+                        <h3>@Model._product.Description</h3>
+                    </div>
+                    <div class="card-footer">
+                        <h3>Card Footer</h3>
+                        <p>@Model._product.Category</p>
+                        <p>@Model._product.Price</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
