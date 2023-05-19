@@ -57,7 +57,12 @@ nav ul {
     width: fit-content;
     font-size: 2vh;
     white-space: nowrap;
+    border-color: #9cd7dc;
 }
+
+    .btn:hover {
+        background-color: #9cd7dc;
+    }
 
 /*Ql editor*/
 .ql-tooltip {

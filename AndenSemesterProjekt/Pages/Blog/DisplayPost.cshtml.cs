@@ -18,6 +18,7 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// </summary>
         public IBlogService _blogService;
 
+
         public int MinYear { get; set; } = 0;
         public int MaxYear { get; set; } = 0;
 
@@ -31,7 +32,6 @@ namespace AndenSemesterProjekt.Pages.Blog
             NewestPosts = _blogService.GetRecentBlogPosts();
             Post = _blogService.GetBlogPostById(id);
             DisplayYear();
-
         }
 
         private void DisplayYear()
