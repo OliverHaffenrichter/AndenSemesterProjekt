@@ -1,9 +1,10 @@
 ﻿using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AndenSemesterProjekt.ViewModels
 {
-    public class BlogPostSideMenuModel
+    public class BlogPostSideMenuModel : PageModel
     {
         public List<Post> Posts { get; set; }
 
@@ -23,7 +24,6 @@ namespace AndenSemesterProjekt.ViewModels
         {
             _blogService = blogService;
         }
-
 
         private void DisplayYear()
         {
