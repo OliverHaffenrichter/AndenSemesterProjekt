@@ -32,7 +32,8 @@ namespace AndenSemesterProjekt.Services
 
         public Product CreateProduct(Product product)
         {
-            throw new NotImplementedException();
+            products.Add(product);
+            return product;
         }
 
         public Product DeleteProduct(int id)
