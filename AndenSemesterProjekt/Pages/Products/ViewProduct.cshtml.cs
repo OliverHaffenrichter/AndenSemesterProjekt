@@ -22,7 +22,10 @@ namespace AndenSemesterProjekt.Pages.Products
 
         public void OnGet(int id)
         {
+
             _product = _productService.GetProductById(id);
+
+            
 
         }
     }
