@@ -12,9 +12,11 @@
 
 <form method="post" id="form">
     <div class="input-group mb-3">
-        <input asp-for="@Model.Post.Title" class="form-control mr-1" placeholder="Enter Title" />
+        <input asp-for="Post.Title" class="form-control mr-1" placeholder="Enter Title" />
+        @*<input asp-for="Post.Id" class="form-control mr-1" readonly hidden />*@
+        <input asp-for="Post.CreationDate" class="form-control mr-1" readonly hidden />
     </div>
-    <input type="hidden" id="jdr" asp-for="@Model.Information" />
+    <input type="hidden" id="jdr" asp-for="Information" />
     <div id="editor">
         @Html.Raw(Model.Information)
     </div>
@@ -78,7 +80,4 @@
         document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
     }
     jdQuill.setContents(JSON.parse(document.getElementById('jdr').value));
-</script>
-
-
-        
+</script>        

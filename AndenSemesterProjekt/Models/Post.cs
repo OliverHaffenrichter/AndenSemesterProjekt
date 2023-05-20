@@ -10,18 +10,18 @@ namespace AndenSemesterProjekt.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public static int NextInt { get; set; } = 0;
-        [Required, StringLength(50)]
+        [Required, MaxLength(50)]
         public string Title { get; set; }
         [Required]
         public string Information { get; set; }
         [Required]
         public DateTime CreationDate { get; set; }
 
-        public Post(string title,string information, DateTime creationDate)
+        public Post(string title,string information)
         {
             Title = title;
             Information = information;
-            CreationDate = creationDate;
+            CreationDate = DateTime.Now;
         }
 
         public Post()

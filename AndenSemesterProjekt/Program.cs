@@ -1,5 +1,6 @@
 using AndenSemesterProjekt.EFDbContext;
 using AndenSemesterProjekt.Interfaces;
+using AndenSemesterProjekt.Models;
 using AndenSemesterProjekt.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IBlogService, BlogService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddDbContext<MwDbContext>();
-builder.Services.AddSingleton<DbService, DbService>();
+builder.Services.AddSingleton<DbService<Post>, DbService<Post>>();
 
 
 

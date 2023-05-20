@@ -4,54 +4,50 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AndenSemesterProjekt.Services
 {
-    public class DbService
+    public class DbService<T> where T : class
     {
-        public async Task<List<Post>> GetPosts()
+        public async Task<IEnumerable<T>> GetObjectsAsync()
         {
             using (var context = new MwDbContext())
             {
-                return await context.Posts.ToListAsync();
+                return await context.Set<T>().AsNoTracking().ToListAsync();
             }
         }
 
-        public async Task AddPost(Post post)
+        public async Task AddObjectAsync(T obj)
         {
             using (var context = new MwDbContext())
             {
-                context.Posts.Add(post);
+                context.Set<T>().Add(obj);
                 context.SaveChanges();
             }
         }
 
-        public async Task DeletePost(Post post)
+        public async Task DeleteObjectAsync(T obj)
         {
             using (var context = new MwDbContext())
             {
-                context.Remove(post);
+                context.Set<T>().Remove(obj);
                 context.SaveChanges();
             }
         }
 
-        public async Task UpdatePost(int id, Post post)
+        public async Task UpdateObjectAsync(T obj)
         {
             using (var context = new MwDbContext())
             {
-                var std = context.Posts.First(p => p.Id == id);
-                std.Title = post.Title;
-                std.Information = post.Information;
-                //std.CreationDate = post.CreationDate;
+                context.Set<T>().Update(obj);
                 context.SaveChanges();
             }
         }
 
-        public void SavePosts(List<Post> posts)
+        public void SaveObjectsAsync(List<T> objs)
         {
             using (var context = new MwDbContext())
             {
-                foreach (Post post in posts)
+                foreach (T obj in objs)
                 {
-                    Console.WriteLine(post.Id);
-                    context.Posts.Add(post);
+                    context.Set<T>().Add(obj);
                     context.SaveChanges();
                 }
 
