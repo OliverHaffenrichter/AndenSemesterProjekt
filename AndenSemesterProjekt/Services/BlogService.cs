@@ -11,15 +11,19 @@ namespace AndenSemesterProjekt.Services
 
         //public int CurrentPage { get; set; } = 1;
         //public int PageSize { get; set; } = 8;
-        public BlogService()
+        private DbService _dbService;
+        public BlogService(DbService dbService)
         {
-            posts = MockPost.GetMockPosts();
+            //posts = MockPost.GetMockPosts();
+            _dbService = dbService;
+            //_dbService.SavePosts(posts);
+            posts = _dbService.GetPosts().Result.ToList();
         }
         public async Task CreateBlogPost(string title, string information)
         {
             Post Result = new Post(title, information, DateTime.Now);
             posts.Add(Result);
-            Console.WriteLine(Result);
+            _dbService.AddPost(Result);
         }
 
         public Post deleteBlogPost(int id)
@@ -29,6 +33,7 @@ namespace AndenSemesterProjekt.Services
                 if (post.Id == id)
                 {
                     posts.Remove(post);
+                    _dbService.DeletePost(post);
                     return post;
                 }
             }
@@ -85,7 +90,16 @@ namespace AndenSemesterProjekt.Services
 
         public void UpdateBlogPost(int id, Post post)
         {
-            posts[id] = post;
+            foreach (Post p in posts)
+            {
+                if (p.Id == id)
+                {
+                    p.Title = post.Title;
+                    p.Information = post.Information;
+                    _dbService.UpdatePost(id, post);
+                    return;
+                }
+            }
         }
 
         public List<Post> GetAllBlogPostsByYear(int year)

@@ -1,5 +1,7 @@
+using AndenSemesterProjekt.EFDbContext;
 using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Services;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IBlogService, BlogService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddDbContext<MwDbContext>();
+builder.Services.AddSingleton<DbService, DbService>();
+
+
+
+//builder.Services.AddMvc().AddRazorPagesOptions(options => {
+//    options.Conventions.AuthorizeFolder("/Item");
+//}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 var app = builder.Build();
 
