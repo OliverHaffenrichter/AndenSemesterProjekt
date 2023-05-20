@@ -99,7 +99,7 @@ namespace AndenSemesterProjekt.Services
 
         public void UpdateProduct(int id, Product product)
         {
-            throw new NotImplementedException();
+            products[id] = product;
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿@page
-@model AndenSemesterProjekt.Pages.Products.CreateProductModel
+@model AndenSemesterProjekt.Pages.Products.UpdateProductModel
 @{
 }
+
 
 <!-- Include stylesheet -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -32,7 +33,7 @@
     </div>
     <div class="form-group">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Create Product
+            Update Product
         </button>
         <!-- Modal -->
         <script>
@@ -51,11 +52,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Er du sikker på du gerne vil uploade produktet?
+                        Er du sikker på du gerne vil opdatere produktet?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej</button>
-                        <input type="submit" onclick="handleSubmit()" value="Create Product" class="btn btn-primary" />
+                        <input type="submit" onclick="handleSubmit()" value="Update Product" class="btn btn-primary" />
                     </div>
                 </div>
             </div>
@@ -89,15 +90,3 @@
         document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
     }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
