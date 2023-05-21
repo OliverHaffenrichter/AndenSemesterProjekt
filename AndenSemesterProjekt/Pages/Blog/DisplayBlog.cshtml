@@ -31,7 +31,7 @@
     </div>
     <div class="blogpagination">
         @*Henter Pagination html koden fra /Pages/Shared/Partials/Pagination.cshtml*@
-        @await Html.PartialAsync("/Pages/Shared/Partials/_Pagination.cshtml", Model)
+        @await Html.PartialAsync("/Pages/Shared/Partials/_PaginationDisplayBlog.cshtml", Model)
         @*        @if (Model.CurrentPage != 1 && Model.Criteria == null)
         {
         <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
@@ -128,7 +128,7 @@
     </div>
     <div class="blogpagination">
         @*Henter Pagination html koden fra /Pages/Shared/Partials/Pagination.cshtml*@
-        @await Html.PartialAsync("/Pages/Shared/Partials/_Pagination.cshtml", Model)
+        @await Html.PartialAsync("/Pages/Shared/Partials/_PaginationDisplayBlog.cshtml", Model)
         @*        @if (Model.CurrentPage != 1 && Model.Criteria == null)
         {
         <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>

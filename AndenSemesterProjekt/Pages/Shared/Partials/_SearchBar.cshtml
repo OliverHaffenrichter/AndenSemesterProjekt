@@ -9,9 +9,9 @@
 @model DisplayBlogModel
 
 
-    <form method="post" class="form-inline">
-        <div class="input-group mb-3">
-            <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
-            <input type="submit" asp-page-handler="Criteria" value="Search" class="btn btn-primary" />
-        </div>
-    </form>
+<form method="post" class="form-inline">
+    <div class="input-group mb-3">
+        <input class="form-control mr-1" asp-for="@Model.Criteria" placeholder="Enter search term" />
+        <input type="submit" asp-page-handler="Criteria" asp-route-SearchCriteria="@Model.Criteria" asp-route-currentPage="1" value="Search" class="btn btn-primary" />
+    </div>
+</form>

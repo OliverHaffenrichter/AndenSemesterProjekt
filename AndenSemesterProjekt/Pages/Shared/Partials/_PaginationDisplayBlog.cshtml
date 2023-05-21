@@ -1,0 +1,80 @@
+﻿@using AndenSemesterProjekt.Pages.Blog;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model DisplayBlogModel
+
+@if (Model.Criteria != null)
+{
+    @if (Model.CurrentPage != 1)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?SearchCriteria=@Model.Criteria&currentPage=@(Model.CurrentPage - 1)&handler=Criteria">Forrige side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Forrige side</a>
+    }
+
+    @for (int i = 1; i < @Model.TotalPages + 1; i++)
+    {
+        <a asp-page-handler="Criteria" asp-route-SearchCriteria="@Model.Criteria" asp-route-currentPage="@i">@i</a>
+    }
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?SearchCriteria=@Model.Criteria&currentPage=@(Model.CurrentPage + 1)&handler=Criteria">Næste side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Næste side </a>
+    }
+}
+else if (Model.Year != 0)
+{
+    @if (Model.CurrentPage != 1)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?year=@Model.Year&currentPage=@(Model.CurrentPage - 1)&handler=BlogByYear">Forrige side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Forrige side</a>
+    }
+
+    @for (int i = 1; i < @Model.TotalPages + 1; i++)
+    {
+        <a asp-page-handler="BlogByYear" asp-route-year="@Model.Year" asp-route-currentPage="@i">@i</a>
+    }
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?year=@Model.Year&currentPage=@(Model.CurrentPage + 1)&handler=BlogByYear">Næste side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Næste side </a>
+    }
+}
+else
+{
+    @if (Model.CurrentPage != 1)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage - 1)">Forrige side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Forrige side</a>
+    }
+
+    @for (int i = 1; i < @Model.TotalPages + 1; i++)
+    {
+        <a asp-route-currentPage="@i">@i</a>
+    }
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <a class="btn btn-primary" href="/Blog/DisplayBlog?currentPage=@(Model.CurrentPage + 1)">Næste side</a>
+    }
+    else
+    {
+        <a class="btn btn-dark disabled">Næste side </a>
+    }
+}

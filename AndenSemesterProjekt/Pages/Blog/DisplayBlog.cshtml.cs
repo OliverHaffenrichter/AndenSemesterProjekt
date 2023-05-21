@@ -45,13 +45,16 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// <summary>
         /// BlogSize is a variable containing total amount of blog posts
         /// </summary>
-        public int BlogSize { get { return _blogService.GetAllBlogPosts().Count(); } }
+        public int BlogSize { get; set; }
 
         /// <summary>
         /// Criteria is a variable used to contain the searchstring
         /// </summary>
         [BindProperty]
         public string Criteria { get; set; }
+
+        [BindProperty]
+        public int Year { get; set; }
 
         /// <summary>
         /// Creates a dependecny injection for _blogService using the interface IBlogService
@@ -76,7 +79,7 @@ namespace AndenSemesterProjekt.Pages.Blog
             }
             NewestPosts = _blogService.GetRecentBlogPosts();
             CurrentPage = currentPage;
-  
+            BlogSize = _blogService.GetAllBlogPosts().Count;
             Posts = _blogService.GetAllBlogPosts()
                 .OrderBy(p => p.Id)
                 .Skip((CurrentPage - 1) * PageSize)
@@ -86,36 +89,66 @@ namespace AndenSemesterProjekt.Pages.Blog
             return Page();
         }
 
-        public IActionResult OnGetBlogByYear(int year)
+        public IActionResult OnGetBlogByYear(int year, int currentPage)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+            CurrentPage = currentPage;
+            Year = year;
             NewestPosts = _blogService.GetRecentBlogPosts();
-
-            Posts = _blogService.GetAllBlogPostsByYear(year)
+            DisplayYear();
+            BlogSize = _blogService.GetAllBlogPostsByYear(Year).Count;
+            Posts = _blogService.GetAllBlogPostsByYear(Year)
                 .OrderBy(p => p.Id)
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
-            DisplayYear();
             return Page();
         }
+
+        public IActionResult OnGetCriteria(string SearchCriteria, int currentPage)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            CurrentPage = currentPage;
+            NewestPosts = _blogService.GetRecentBlogPosts();
+            DisplayYear();
+            Criteria = SearchCriteria;
+            BlogSize = _blogService.GetAllBlogPostsByCriteria(SearchCriteria).Count;
+            Posts = _blogService.GetAllBlogPostsByCriteria(SearchCriteria)
+                .OrderBy(p => p.Id)
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+            return Page();
+        }
+
 
         /// <summary>
         /// OnpostCriteria is the method that gets called on search attempt
         /// </summary>
         /// <param name="Criteria"></param>
         /// <returns></returns>
-        public IActionResult OnPostCriteria(string Criteria)
+        public IActionResult OnPostCriteria(string Criteria, int currentPage)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToPage("DisplayBlog", new { currentPage = 1.ToString() });
             }
-            Posts = _blogService.GetAllBlogPostsByCriteria(Criteria);
-            return Page();
+            CurrentPage = currentPage;
+            NewestPosts = _blogService.GetRecentBlogPosts();
+            DisplayYear();
+            BlogSize = _blogService.GetAllBlogPostsByCriteria(Criteria).Count;
+            Posts = _blogService.GetAllBlogPostsByCriteria(Criteria)
+                .OrderBy(p => p.Id)
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList(); ;
+            return Redirect($"/Blog/DisplayBlog?SearchCriteria={Criteria}&currentPage={currentPage}&handler=Criteria");
         }
 
         private void DisplayYear()

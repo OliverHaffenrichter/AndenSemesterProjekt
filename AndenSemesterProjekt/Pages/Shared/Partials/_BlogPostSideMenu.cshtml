@@ -16,7 +16,7 @@
     @for (int i = Model.MaxYear; i >= Model.MinYear; i--)
     {
         <li>
-            <a asp-page-handler="BlogByYear" asp-route-year="@i">@i</a>
+            <a asp-page="/Blog/DisplayBlog" asp-page-handler="BlogByYear" asp-route-currentPage="1" asp-route-year="@i">@i</a>
         </li>
     }
 </ul>
