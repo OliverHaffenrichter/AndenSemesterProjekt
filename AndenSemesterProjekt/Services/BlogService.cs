@@ -1,4 +1,5 @@
-﻿using AndenSemesterProjekt.Interfaces;
+﻿using AndenSemesterProjekt.EFDbContext;
+using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Mock;
 using AndenSemesterProjekt.Models;
 using System.Diagnostics;
@@ -9,16 +10,20 @@ namespace AndenSemesterProjekt.Services
     {
         private List<Post> posts = new List<Post>();
 
+        private DbService<Post> _dbService;
+
         //
         //public int CurrentPage { get; set; } = 1;
         //public int PageSize { get; set; } = 8;
-        public BlogService()
+        public BlogService(DbService<Post> dbService)
         {
-            posts = MockPost.GetMockPosts();
+            //posts = MockPost.GetMockPosts();
+            _dbService = dbService;
+            posts = _dbService.GetObjectsAsync().Result.ToList();
         }
         public async Task CreateBlogPost(string title, string information)
         {
-            Post Result = new Post(title, information, DateTime.Now);
+            Post Result = new Post(title, information);
             posts.Add(Result);
             Console.WriteLine(Result);
         }
@@ -84,9 +89,9 @@ namespace AndenSemesterProjekt.Services
             //return posts.Where(p => p.Id == id).First();
         }
 
-        public void UpdateBlogPost(int id, Post post)
+        public void UpdateBlogPost(Post post)
         {
-            posts[id] = post;
+            //posts[id] = post;
         }
 
         public List<Post> GetAllBlogPostsByYear(int year)
