@@ -1,13 +1,12 @@
-using AndenSemesterProjekt.Interfaces;
+﻿using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AndenSemesterProjekt.Pages.Blog
+namespace AndenSemesterProjekt.ViewModels
 {
-    public class DisplayPostModel : PageModel
+    public class BlogPostSideMenuModel : PageModel
     {
-        public Post Post { get; set; }
+        public List<Post> Posts { get; set; }
 
         /// <summary>
         /// NewestPosts returns the five newest posts from posts
@@ -18,20 +17,12 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// </summary>
         public IBlogService _blogService;
 
-
         public int MinYear { get; set; } = 0;
         public int MaxYear { get; set; } = 0;
 
-        public DisplayPostModel(IBlogService blogService)
+        public BlogPostSideMenuModel(IBlogService blogService)
         {
             _blogService = blogService;
-        }
-
-        public void OnGet(int id)
-        {
-            NewestPosts = _blogService.GetRecentBlogPosts();
-            Post = _blogService.GetBlogPostById(id);
-            DisplayYear();
         }
 
         private void DisplayYear()

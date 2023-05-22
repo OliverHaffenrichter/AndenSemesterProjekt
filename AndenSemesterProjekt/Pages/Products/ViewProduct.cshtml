@@ -1,30 +1,33 @@
 ﻿@page
-@model AndenSemesterProjekt.Pages.Products.DisplayCategoriesModel
+@model AndenSemesterProjekt.Pages.Products.ViewProductModel
 @{
 }
 
+<h2>THE PRODUCT</h2>
 
-<a asp-page="DisplayProducts"><h1>Vis alle ydelser</h1></a>
+
+
+
 <div class="row row-cols-3 g-2">
-    @foreach (var item in Model.Categories)
-    {
-        <div class="flex-column">
+  <div class="flex-column">
             <div class="card">
-
                 <div class="card-header">
-                    <form method="post">
-                        <a asp-page="/Products/DisplayProducts" asp-page-handler="ProductsByCat" asp-route-category="@item.ToLower()">
-                    <h1>@item</h1>
-                    </a>
-                    </form>
+                   
+                        
+                     <h1>@Model._product.Id</h1>
+                     <h1>@Model._product.Title</h1>
+                    
                     <div class="card-img">
                         <h2>Card Image</h2>
                     </div>
                     <div class="card-body">
                         <h3>Card Body</h3>
+                        <h3>@Model._product.Description</h3>
                     </div>
                     <div class="card-footer">
                         <h3>Card Footer</h3>
+                        <p>@Model._product.Category</p>
+                        <p>@Model._product.Price</p>
                     </div>
                 </div>
             </div>

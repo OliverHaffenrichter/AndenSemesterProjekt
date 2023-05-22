@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h3>SenesteOpslag</h3>
+<ul>
+    @foreach (var item in Model.NewestPosts)
+    {
+        <li><a asp-page="DisplayPost" asp-route-id="@item.Id">@item.Title</a></li>
+    }
+</ul>
+<h3>Arkiv</h3>
+<ul>
+    @for (int i = Model.MaxYear; i >= Model.MinYear; i--)
+    {
+        <li>
+            <a asp-page="/Blog/DisplayBlog" asp-page-handler="BlogByYear" asp-route-currentPage="1" asp-route-year="@i">@i</a>
+        </li>
+    }
+</ul>

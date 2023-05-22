@@ -1,0 +1,39 @@
+﻿@page 
+@model AndenSemesterProjekt.Pages.Products.DisplayProductModel
+@{
+}
+
+<h1>PRODUCTS!!!!!!</h1>
+
+<a asp-page="DisplayCategories">Tilbage til Catagorier</a>
+
+<div class="row row-cols-3 g-2">
+    @foreach (var item in Model.products)
+    {
+        <div class="flex-column">
+            <div class="card">
+                <div class="card-header">
+                  <form method="post">
+                        <a asp-page="/Products/ViewProduct" asp-page-handler="OnGet" asp-route-id="@item.Id">
+                        <h1>@item.Title</h1>
+                        <h1>Id = @item.Id</h1>
+                        </a>
+                        </form>
+                    <div class="card-img">
+                        <h2>Card Image</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Card Body</h3>
+                        <h3>@item.Description</h3>
+                    </div>
+                    <div class="card-footer">
+                        <h3>Card Footer</h3>
+                        <p>@item.Category</p>
+                        <p>@item.Price</p>
+                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }

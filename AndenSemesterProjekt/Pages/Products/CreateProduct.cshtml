@@ -1,5 +1,5 @@
 ﻿@page
-@model AndenSemesterProjekt.Pages.Blog.CreatePostModel
+@model AndenSemesterProjekt.Pages.Products.CreateProductModel
 @{
 }
 
@@ -11,15 +11,28 @@
 <!--Form containg all the information for creating a new blog post-->
 <form method="post" id="form">
     <div class="input-group mb-3">
-        <input asp-for="@Model.Post.Title" class="form-control mr-1" placeholder="Enter Title" />
+        <input asp-for="@Model.Product.Title" class="form-control mr-1" placeholder="Enter Title" />
     </div>
     <input type="hidden" id="jdr" asp-for="@Model.Information" />
     <div id="editor">
         @Html.Raw(Model.Information)
     </div>
+    <div class="input-group mb-3">
+        <input asp-for="@Model.Product.Price" class="form-control mr-1" placeholder="Enter Price" />
+    </div>
+    <div class="input-group mb-3">
+        <select asp-for="@Model.Product.Category">
+            <option>cat1</option>
+            <option>cat2</option>
+            <option>cat3</option>
+            <option>cat4</option>
+            <option>cat5</option>
+            <option>cat6</option>
+        </select>
+    </div>
     <div class="form-group">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            CreatePost
+            Create Product
         </button>
         <!-- Modal -->
         <script>
@@ -38,11 +51,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Er du sikker på du gerne vil poste opslaget?
+                        Er du sikker på du gerne vil uploade produktet?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej</button>
-                        <input type="submit" onclick="handleSubmit()" value="Post opslaget" class="btn btn-primary" />
+                        <input type="submit" onclick="handleSubmit()" value="Create Product" class="btn btn-primary" />
                     </div>
                 </div>
             </div>
@@ -76,3 +89,15 @@
         document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
     }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+

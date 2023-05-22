@@ -9,6 +9,7 @@ namespace AndenSemesterProjekt.Services
     {
         private List<Post> posts = new List<Post>();
 
+        //
         //public int CurrentPage { get; set; } = 1;
         //public int PageSize { get; set; } = 8;
         public BlogService()
@@ -65,6 +66,11 @@ namespace AndenSemesterProjekt.Services
             }
         }
 
+        public List<Post> GetRecentBlogPosts()
+        {
+            return posts.OrderBy(p => p.Id).Take(5).ToList();
+        }
+
         public Post GetBlogPostById(int id)
         {
             foreach (Post post in posts)
@@ -81,6 +87,11 @@ namespace AndenSemesterProjekt.Services
         public void UpdateBlogPost(int id, Post post)
         {
             posts[id] = post;
+        }
+
+        public List<Post> GetAllBlogPostsByYear(int year)
+        {
+            return posts.Where(p => p.CreationDate.Year == year).ToList();
         }
     }
 }

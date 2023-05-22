@@ -7,8 +7,6 @@ namespace AndenSemesterProjekt.Pages.Blog
 {
     public class UpdatePostModel : PageModel
     {
-        public int SelectedPost { get; set; }
-        public List<Post> Posts { get; set; }
         /// <summary>
         /// simple variable used to contain a Post Object
         /// </summary>
@@ -31,15 +29,24 @@ namespace AndenSemesterProjekt.Pages.Blog
         }
         public void OnGet(int id)
         {
-            Posts = _blogService.GetAllBlogPosts();
-            Post = Posts.Where(p => p.Id == id).First();
+            Post = _blogService.GetBlogPostById(id);
             Information = Post.Information;
         }
 
         public IActionResult OnPost(int id)
         {
+            ModelState.Remove("Post.Information");
+            if (!ModelState.IsValid)
+            {
+                //var errors = ModelState
+                //.Where(x => x.Value.Errors.Count > 0)
+                //.Select(x => new { x.Key, x.Value.Errors })
+                //.ToArray();
+                return Page();
+            }
+            Post.Id = id;
             Post.Information = Information;
-            _blogService.UpdateBlogPost(id, Post);
+            _blogService.UpdateBlogPost(Post);
             return RedirectToPage("DisplayBlog");
         }
     }

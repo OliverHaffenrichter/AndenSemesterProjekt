@@ -7,7 +7,7 @@
         public static int NextInt { get; set; } = 0;
         public string Title { get; set; }
         public string Description { get; set; }
-        public double Pris { get; set; }
+        public double Price { get; set; }
         public string Category { get; set; }
 
         public Product(string title, string description, string category, double pris)
@@ -16,7 +16,7 @@
             Title = title;
             Description = description;
             Category = category;
-            Pris = pris;
+            Price = pris;
             
         }
 

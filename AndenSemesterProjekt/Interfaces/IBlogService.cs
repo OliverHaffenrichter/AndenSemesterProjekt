@@ -6,10 +6,12 @@ namespace AndenSemesterProjekt.Interfaces
     {
         Task CreateBlogPost(string title, string information);
         Post deleteBlogPost(int id);
-        void UpdateBlogPost(int id, Post post);
+        void UpdateBlogPost(Post post);
         List<Post> GetAllBlogPosts();
         List<Post> GetAllBlogPostsByCategory(string category);
         List<Post> GetAllBlogPostsByCriteria(string criteria);
+        List<Post> GetAllBlogPostsByYear(int year);
+        List<Post> GetRecentBlogPosts();
         Post GetBlogPostById(int id);
     }
 }
