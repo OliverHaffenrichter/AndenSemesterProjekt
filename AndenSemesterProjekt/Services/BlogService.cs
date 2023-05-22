@@ -9,21 +9,18 @@ namespace AndenSemesterProjekt.Services
     {
         private List<Post> posts = new List<Post>();
 
+        //
         //public int CurrentPage { get; set; } = 1;
         //public int PageSize { get; set; } = 8;
-        private DbService<Post> _dbService;
-        public BlogService(DbService<Post> dbService)
+        public BlogService()
         {
-            //posts = MockPost.GetMockPosts();
-            _dbService = dbService;
-            //_dbService.SavePosts(posts);
-            posts = _dbService.GetObjectsAsync().Result.ToList();
+            posts = MockPost.GetMockPosts();
         }
         public async Task CreateBlogPost(string title, string information)
         {
-            Post Result = new Post(title, information);
+            Post Result = new Post(title, information, DateTime.Now);
             posts.Add(Result);
-            _dbService.AddObjectAsync(Result);
+            Console.WriteLine(Result);
         }
 
         public Post deleteBlogPost(int id)
@@ -33,7 +30,6 @@ namespace AndenSemesterProjekt.Services
                 if (post.Id == id)
                 {
                     posts.Remove(post);
-                    _dbService.DeleteObjectAsync(post);
                     return post;
                 }
             }
@@ -62,7 +58,7 @@ namespace AndenSemesterProjekt.Services
             string searchString = criteria.Replace(" ", ""); ;
             if (criteria != null)
             {
-                return posts.Where(c => c.Title.ToLower().Contains(searchString.ToLower())).ToList();
+                return posts.Where(c => c.Title.Contains(searchString.ToLower())).ToList();
             }
             else
             {
@@ -88,23 +84,14 @@ namespace AndenSemesterProjekt.Services
             //return posts.Where(p => p.Id == id).First();
         }
 
-        public void UpdateBlogPost(Post post)
+        public void UpdateBlogPost(int id, Post post)
         {
-            foreach (Post p in posts)
-            {
-                if (p.Id == post.Id)
-                {
-                    p.Title = post.Title;
-                    p.Information = post.Information;
-                    _dbService.UpdateObjectAsync(post);
-                    return;
-                }
-            }
+            posts[id] = post;
         }
 
         public List<Post> GetAllBlogPostsByYear(int year)
         {
-            return posts.Where(p => p.CreationDate.Year == year).Take(10).ToList();
+            return posts.Where(p => p.CreationDate.Year == year).ToList();
         }
     }
 }
