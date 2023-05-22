@@ -91,7 +91,14 @@ namespace AndenSemesterProjekt.Services
 
         public void UpdateBlogPost(Post post)
         {
-            //posts[id] = post;
+            foreach (Post p in posts)
+            {
+                if (post.Id == p.Id)
+                {
+                    p.Title = post.Title;
+                    p.Information = p.Information;
+                }
+            }
         }
 
         public List<Post> GetAllBlogPostsByYear(int year)
