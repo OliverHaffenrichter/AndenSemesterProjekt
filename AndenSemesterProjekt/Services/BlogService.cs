@@ -68,7 +68,7 @@ namespace AndenSemesterProjekt.Services
             string searchString = criteria.Replace(" ", "");
             if (criteria != null)
             {
-                return posts.Where(c => c.Title.ToLower().Contains(searchString.ToLower())).ToList();
+                return posts.Where(c => c.Title.ToLower().Replace(" ", "").Contains(searchString.ToLower())).ToList();
             }
             else
             {

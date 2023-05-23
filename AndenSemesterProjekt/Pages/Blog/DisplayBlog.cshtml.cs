@@ -147,7 +147,7 @@ namespace AndenSemesterProjekt.Pages.Blog
                 .OrderBy(p => p.Id)
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
-                .ToList(); ;
+                .ToList();
             return Redirect($"/Blog/DisplayBlog?SearchCriteria={Criteria}&currentPage={currentPage}&handler=Criteria");
         }
 
