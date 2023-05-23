@@ -29,7 +29,7 @@ namespace AndenSemesterProjekt.Services
         {
             Post Result = new Post(title, information);
             posts.Add(Result);
-            Console.WriteLine(Result);
+            _dbService.AddObjectAsync(Result);
         }
 
         public Post deleteBlogPost(int id)
@@ -39,6 +39,7 @@ namespace AndenSemesterProjekt.Services
                 if (post.Id == id)
                 {
                     posts.Remove(post);
+                    _dbService.DeleteObjectAsync(post);
                     return post;
                 }
             }
@@ -100,7 +101,9 @@ namespace AndenSemesterProjekt.Services
                 if (post.Id == p.Id)
                 {
                     p.Title = post.Title;
-                    p.Information = p.Information;
+                    p.Information = post.Information;
+                    UpdateBlogPost(new Post(p.Title, p.Information));
+                    return;
                 }
             }
         }
