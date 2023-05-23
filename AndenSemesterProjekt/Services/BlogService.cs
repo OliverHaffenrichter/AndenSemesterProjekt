@@ -102,7 +102,7 @@ namespace AndenSemesterProjekt.Services
                 {
                     p.Title = post.Title;
                     p.Information = post.Information;
-                    UpdateBlogPost(new Post(p.Title, p.Information));
+                    _dbService.UpdateObjectAsync(post);
                     return;
                 }
             }
