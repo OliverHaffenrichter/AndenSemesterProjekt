@@ -22,7 +22,6 @@ namespace AndenSemesterProjekt.Models
 
         public Product(string title, string description, string category, double pris)
         {
-            Id = NextInt++;
             Title = title;
             Description = description;
             Category = category;

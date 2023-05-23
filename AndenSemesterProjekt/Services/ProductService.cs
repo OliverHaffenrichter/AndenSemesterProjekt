@@ -15,9 +15,9 @@ namespace AndenSemesterProjekt.Services
         public ProductService(DbService<Product> dbservice)
         {
             _dbService = dbservice;
-           // products = MockProduct.GetMockProduct();
-           products = _dbService.GetObjectsAsync().Result.ToList();
-           _dbService.SaveObjectsAsync(products);
+            //products = MockProduct.GetMockProduct();
+            products = _dbService.GetObjectsAsync().Result.ToList();
+            //_dbService.SaveObjectsAsync(products);
         }
 
         public List<string> GetProductCategories()
