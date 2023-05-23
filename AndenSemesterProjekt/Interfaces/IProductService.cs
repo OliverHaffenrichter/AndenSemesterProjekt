@@ -5,7 +5,7 @@ namespace AndenSemesterProjekt.Interfaces
     public interface IProductService
     {
 
-        Product CreateProduct(Product product);
+        Task CreateProduct(string title, string description, double price, string category);
         Product DeleteProduct(int id);
         void UpdateProduct(int id, Product product);
         List<Product> GetAllProducts();

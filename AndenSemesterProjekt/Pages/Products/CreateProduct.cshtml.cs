@@ -1,5 +1,6 @@
 using AndenSemesterProjekt.Interfaces;
 using AndenSemesterProjekt.Models;
+using AndenSemesterProjekt.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -25,9 +26,10 @@ namespace AndenSemesterProjekt.Pages.Products
 
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            _productService.CreateProduct(Product);
+            //_productService.CreateProduct(string title, string description, double price, string category);
+            await _productService.CreateProduct(Product.Title, Product.Description, Product.Price, Product.Category);
             return RedirectToPage("DisplayProducts");
         }
     }

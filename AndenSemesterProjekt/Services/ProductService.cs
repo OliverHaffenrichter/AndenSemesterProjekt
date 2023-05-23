@@ -10,10 +10,14 @@ namespace AndenSemesterProjekt.Services
 
         private List<Product> products = new List<Product>();
         private List<string> productCategories = new List<string>();
+        private DbService<Product> _dbService;
 
-        public ProductService()
+        public ProductService(DbService<Product> dbservice)
         {
-            products = MockProduct.GetMockProduct();
+            _dbService = dbservice;
+           // products = MockProduct.GetMockProduct();
+           products = _dbService.GetObjectsAsync().Result.ToList();
+           _dbService.SaveObjectsAsync(products);
         }
 
         public List<string> GetProductCategories()
@@ -30,10 +34,11 @@ namespace AndenSemesterProjekt.Services
         }
 
 
-        public Product CreateProduct(Product product)
+        public async Task CreateProduct(string title, string description, double price, string category)
         {
-            products.Add(product);
-            return product;
+            Product result = new Product(title, description, category, price);
+            products.Add(result);
+            Console.WriteLine(result);
         }
 
         public Product DeleteProduct(int id)
@@ -47,7 +52,9 @@ namespace AndenSemesterProjekt.Services
             //    }
             //}
             Product product = GetProductById(id);
-            products.Remove(product);
+            //products.Remove(product);
+            _dbService.DeleteObjectAsync(product);
+           // _dbService.SaveObjectsAsync();
 
             return product;
         }
