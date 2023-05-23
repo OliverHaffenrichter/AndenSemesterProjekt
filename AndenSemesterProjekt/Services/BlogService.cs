@@ -8,7 +8,7 @@ namespace AndenSemesterProjekt.Services
 {
     public class BlogService : IBlogService
     {
-        private List<Post> posts = new List<Post>();
+        public List<Post> posts = new List<Post>();
 
         private DbService<Post> _dbService;
 
@@ -20,6 +20,10 @@ namespace AndenSemesterProjekt.Services
             //posts = MockPost.GetMockPosts();
             _dbService = dbService;
             posts = _dbService.GetObjectsAsync().Result.ToList();
+        }
+        public BlogService()
+        {
+
         }
         public async Task CreateBlogPost(string title, string information)
         {
@@ -60,10 +64,10 @@ namespace AndenSemesterProjekt.Services
 
         public List<Post> GetAllBlogPostsByCriteria(string criteria)
         {
-            string searchString = criteria.Replace(" ", ""); ;
+            string searchString = criteria.Replace(" ", "");
             if (criteria != null)
             {
-                return posts.Where(c => c.Title.Contains(searchString.ToLower())).ToList();
+                return posts.Where(c => c.Title.ToLower().Contains(searchString.ToLower())).ToList();
             }
             else
             {
