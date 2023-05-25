@@ -31,5 +31,15 @@ namespace AndenSemesterProjekt.Services
             }
             return products;
         }
+        public async Task<List<ProductCategories>> GetProductCategories()
+        {
+            List<ProductCategories> categories;
+
+            using (var context = new MwDbContext())
+            {
+                categories = context.ProductCategories.AsNoTracking().ToList();
+            }
+            return categories;
+        }
     }
 }

@@ -23,15 +23,15 @@ namespace AndenSemesterProjekt.Services
 
         public List<ProductCategories> GetProductCategories()
         {
-            foreach (var product in products)
-            {
-                if (product.ProductCategories.Category != null
-                    && !productCategories.Any(c => c.Category == product.ProductCategories.Category))
-                {
-                    productCategories.Add(product.ProductCategories);
-                }
-            }
-            return productCategories;
+            //foreach (var product in products)
+            //{
+            //    if (product.ProductCategories.Category != null
+            //        && !productCategories.Any(c => c.Category == product.ProductCategories.Category))
+            //    {
+            //        productCategories.Add(product.ProductCategories);
+            //    }
+            //}
+            return _dbProductService.GetProductCategories().Result;
         }
 
 
@@ -39,7 +39,6 @@ namespace AndenSemesterProjekt.Services
         {
             Product result = new Product(title, description, category, price);
             products.Add(result);
-            Console.WriteLine(result);
         }
 
         public Product DeleteProduct(int id)
@@ -62,7 +61,7 @@ namespace AndenSemesterProjekt.Services
 
         public List<Product> GetAllProducts()
         {
-            return products;
+            return products; 
         }
 
         public List<Product> GetProductByCategory(string category)
