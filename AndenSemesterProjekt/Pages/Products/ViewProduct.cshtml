@@ -3,6 +3,11 @@
 @{
 }
 
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 <h2>THE PRODUCT</h2>
 
 
@@ -11,9 +16,7 @@
 <div class="row row-cols-3 g-2">
   <div class="flex-column">
             <div class="card">
-                <div class="card-header">
-                   
-                        
+                <div class="card-header">     
                      <h1>@Model._product.Id</h1>
                      <h1>@Model._product.Title</h1>
                     
@@ -22,10 +25,35 @@
                     </div>
                     <div class="card-body">
                         <h3>Card Body</h3>
-                        <h3>@Model._product.Description</h3>
+                        @*<h3>@Model._product.Description</h3>*@
+                    <input hidden id="ql-text" value="@Model._product.Description" />
+                    <div id="ql-display">
                     </div>
-                    <div class="card-footer">
-                        <h3>Card Footer</h3>
+                    <script>
+                        var jdQuill = new Quill('#ql-display', {
+                            readOnly: true,
+                            value: this,
+                            theme: 'bubble'
+                        });
+                        //var ops =
+                        //    [
+                        //        { insert: 'Hello' },
+                        //        { insert: 'World!', attributes: { bold: true } },
+                        //        { insert: '\n' }
+                        //    ]
+                        var JsonObject = JSON.parse(document.getElementById('ql-text').value);
+                        console.info(JsonObject);
+
+                        for (let x in JsonObject) {
+                            for (let y in JsonObject[x]) {
+                                console.log(y + ": " + JsonObject[x][y]);
+                            }
+                        }
+                        jdQuill.setContents(JSON.parse(document.getElementById('ql-text').value));
+                    </script>
+                </div>
+                <div class="card-footer">
+                    <h3>Card Footer</h3>
                         <p>@Model._product.ProductCategories.Category</p>
                         <p>@Model._product.Price</p>
                     </div>

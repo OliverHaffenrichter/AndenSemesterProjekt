@@ -61,5 +61,4 @@ namespace AndenSemesterProjekt.Pages.Products
             return Page();
         }
     }
-    
 }

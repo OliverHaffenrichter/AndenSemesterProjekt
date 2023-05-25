@@ -1,7 +1,12 @@
-﻿@page 
+﻿@page
 @model AndenSemesterProjekt.Pages.Products.DisplayProductModel
 @{
 }
+
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 <h1>PRODUCTS!!!!!!</h1>
 
@@ -13,18 +18,48 @@
         <div class="flex-column">
             <div class="card">
                 <div class="card-header">
-                  <form method="post">
+                    <form method="post">
                         <a asp-page="/Products/ViewProduct" asp-page-handler="OnGet" asp-route-id="@item.Id">
-                        <h1>@item.Title</h1>
-                        <h1>Id = @item.Id</h1>
+                            <h1>@item.Title</h1>
+                            <h1>Id = @item.Id</h1>
                         </a>
-                        </form>
+                    </form>
                     <div class="card-img">
                         <h2>Card Image</h2>
                     </div>
                     <div class="card-body">
                         <h3>Card Body</h3>
-                        <h3>@item.Description</h3>
+                        @*<h3>@item.Description</h3>*@
+                        <input hidden id="ql-text-@item.Id" value="@item.Description" />
+                        <div id="ql-display-@item.Id">
+                        </div>
+                        <script>
+                            var jdQuill = new Quill('#ql-display-' + @item.Id, {
+                                readOnly: true,
+                                value: this,
+                                theme: 'bubble'
+                            });
+                            //var ops =
+                            //    [
+                            //        { insert: 'Hello' },
+                            //        { insert: 'World!', attributes: { bold: true } },
+                            //        { insert: '\n' }
+                            //    ]
+                            var JsonObject = JSON.parse(document.getElementById('ql-text-' + @item.Id).value);
+                            console.info(JsonObject);
+
+                            //for (let x in JsonObject) {
+                            //    for (let y in JsonObject[x]) {
+                            //        console.log(y + ": " + JsonObject[x][y]);
+                            //    }
+                            //}
+                            jdQuill.setContents(JSON.parse(document.getElementById('ql-text-' + @item.Id).value));
+
+                                                                                                                //var message_lines = document.getElementById('ql-display-' + @item.Id).getClientRects();
+                                                                                                                //console.info(message_lines);
+                                                                                                                //var amount_of_lines = message_lines.length;
+                                                                                                                //console.info("lines amount "+message_container.getClientRects().length);
+                        </script>
                     </div>
                     <div class="card-footer">
                         <h3>Card Footer</h3>
