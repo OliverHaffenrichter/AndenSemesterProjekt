@@ -13,7 +13,7 @@ namespace AndenSemesterProjekt.Pages.Products
         /// <summary>
         /// products returns the amount of blog posts being displayed on the page
         /// </summary>
-        public List<Product> products { get; set; } 
+        public List<Product> products { get; set; } = new List<Product>();
         /// <summary>
         /// _productService is a variable used to for dependency injection 
         /// </summary>

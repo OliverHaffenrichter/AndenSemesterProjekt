@@ -7,28 +7,29 @@ namespace AndenSemesterProjekt.Services
 {
     public class ProductService : IProductService
     {
-
         private List<Product> products = new List<Product>();
-        private List<string> productCategories = new List<string>();
+        private List<ProductCategories> productCategories = new List<ProductCategories>();
         private DbService<Product> _dbService;
+        private DbProductService _dbProductService;
 
-        public ProductService(DbService<Product> dbservice)
+        public ProductService(DbService<Product> dbservice, DbProductService dbProductService)
         {
             _dbService = dbservice;
+            _dbProductService = dbProductService;
             //products = MockProduct.GetMockProduct();
             //_dbService.SaveObjectsAsync(products);
-            products = _dbService.GetObjectsAsync().Result.ToList();
+            products = _dbProductService.GetProductsAsync().Result.ToList();
         }
 
-        public List<string> GetProductCategories()
+        public List<ProductCategories> GetProductCategories()
         {
             foreach (var product in products)
             {
-                if (product.ProductCategories.Category != null && !productCategories.Contains(product.ProductCategories.Category.ToLower()))
+                if (product.ProductCategories.Category != null
+                    && !productCategories.Any(c => c.Category == product.ProductCategories.Category))
                 {
-                    productCategories.Add(product.ProductCategories.Category);
+                    productCategories.Add(product.ProductCategories);
                 }
-
             }
             return productCategories;
         }
@@ -75,16 +76,7 @@ namespace AndenSemesterProjekt.Services
             //    }
 
             //}
-           
-            if (category != null)
-            {
-                return products.Where(c => c.ProductCategories.Category.Equals(category.ToLower())).ToList();
-            }
-            else
-            {
-                return products;
-            }
-
+            return _dbProductService.GetProductsByCategoryIdAsync(category).Result.ToList();
         }
 
         public List<Product> GetProductByCriteria(string criteria)

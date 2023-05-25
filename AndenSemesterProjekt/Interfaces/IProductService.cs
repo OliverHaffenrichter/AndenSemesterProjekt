@@ -4,7 +4,6 @@ namespace AndenSemesterProjekt.Interfaces
 {
     public interface IProductService
     {
-
         Task CreateProduct(string title, string description, double price, string category);
         Product DeleteProduct(int id);
         void UpdateProduct(int id, Product product);
@@ -12,7 +11,7 @@ namespace AndenSemesterProjekt.Interfaces
         List<Product> GetProductByCategory(string category);
         List<Product> GetProductByCriteria(string criteria);
         Product GetProductById(int id);
-        List<string> GetProductCategories();
+        List<ProductCategories> GetProductCategories();
 
     }
 }

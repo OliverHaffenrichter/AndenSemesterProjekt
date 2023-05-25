@@ -5,6 +5,7 @@ namespace AndenSemesterProjekt.Models
 {
     public class ProductCategories
     {
+        [Required]
         [ForeignKey("Product")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

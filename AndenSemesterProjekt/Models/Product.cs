@@ -19,7 +19,9 @@ namespace AndenSemesterProjekt.Models
         [Required]
         public double Price { get; set; }
         [Required]
-        public virtual ProductCategories ProductCategories { get; set; } = new ProductCategories();
+        public ProductCategories ProductCategories { get; set; } = new ProductCategories();
+
+        public ICollection<ProductCategories> Categories;
 
         public Product(string title, string description, string category, double pris)
         {
