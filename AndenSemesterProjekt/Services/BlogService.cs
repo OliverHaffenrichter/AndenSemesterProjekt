@@ -19,6 +19,7 @@ namespace AndenSemesterProjekt.Services
         {
             //posts = MockPost.GetMockPosts();
             _dbService = dbService;
+            //_dbService.SaveObjectsAsync(posts);
             posts = _dbService.GetObjectsAsync().Result.ToList();
         }
         public BlogService()

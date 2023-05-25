@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections;
 
 namespace AndenSemesterProjekt.Models
 {
@@ -18,15 +19,14 @@ namespace AndenSemesterProjekt.Models
         [Required]
         public double Price { get; set; }
         [Required]
-        public string Category { get; set; }
+        public virtual ProductCategories ProductCategories { get; set; } = new ProductCategories();
 
         public Product(string title, string description, string category, double pris)
         {
             Title = title;
             Description = description;
-            Category = category;
+            ProductCategories.Category = category;
             Price = pris;
-            
         }
 
         public Product()

@@ -29,7 +29,7 @@ namespace AndenSemesterProjekt.Pages.Products
         public async Task<IActionResult> OnPost()
         {
             //_productService.CreateProduct(string title, string description, double price, string category);
-            await _productService.CreateProduct(Product.Title, Product.Description, Product.Price, Product.Category);
+            await _productService.CreateProduct(Product.Title, Product.Description, Product.Price, Product.ProductCategories.Category);
             return RedirectToPage("DisplayProducts");
         }
     }

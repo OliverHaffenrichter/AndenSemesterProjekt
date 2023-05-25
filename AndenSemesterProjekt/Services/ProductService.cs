@@ -16,17 +16,17 @@ namespace AndenSemesterProjekt.Services
         {
             _dbService = dbservice;
             //products = MockProduct.GetMockProduct();
-            products = _dbService.GetObjectsAsync().Result.ToList();
             //_dbService.SaveObjectsAsync(products);
+            products = _dbService.GetObjectsAsync().Result.ToList();
         }
 
         public List<string> GetProductCategories()
         {
             foreach (var product in products)
             {
-                if (product.Category != null && !productCategories.Contains(product.Category.ToLower()))
+                if (product.ProductCategories.Category != null && !productCategories.Contains(product.ProductCategories.Category.ToLower()))
                 {
-                    productCategories.Add(product.Category);
+                    productCategories.Add(product.ProductCategories.Category);
                 }
 
             }
@@ -52,7 +52,7 @@ namespace AndenSemesterProjekt.Services
             //    }
             //}
             Product product = GetProductById(id);
-            //products.Remove(product);
+            products.Remove(product);
             _dbService.DeleteObjectAsync(product);
            // _dbService.SaveObjectsAsync();
 
@@ -78,7 +78,7 @@ namespace AndenSemesterProjekt.Services
            
             if (category != null)
             {
-                return products.Where(c => c.Category.Equals(category.ToLower())).ToList();
+                return products.Where(c => c.ProductCategories.Category.Equals(category.ToLower())).ToList();
             }
             else
             {

@@ -26,7 +26,7 @@ namespace AndenSemesterProjekt.Pages.Products
         public IActionResult OnPost(int id, Product product)
         {
             _productService.UpdateProduct(id, product);
-            return Redirect($"/Products/DisplayProducts?category={product.Category}&handler=ProductsByCat");
+            return Redirect($"/Products/DisplayProducts?category={product.ProductCategories.Category}&handler=ProductsByCat");
         }
     }
 }
