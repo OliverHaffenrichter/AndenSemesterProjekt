@@ -12,5 +12,15 @@ namespace AndenSemesterProjekt.Models
         
         [Required]
         public string Category { get; set; }
+
+        public ProductCategories(string category)
+        {
+            Category = category;
+        }
+
+        public ProductCategories()
+        {
+
+        }
     }
 }

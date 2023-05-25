@@ -8,6 +8,7 @@ namespace AndenSemesterProjekt.Pages.Products
 {
     public class CreateProductModel : PageModel
     {
+        public List<ProductCategories> Categories { get; set; }
 
         private IProductService _productService { get; set; }
         [BindProperty]
@@ -23,13 +24,16 @@ namespace AndenSemesterProjekt.Pages.Products
 
         public void OnGet()
         {
-
+            Categories = _productService.GetProductCategories();
         }
 
         public async Task<IActionResult> OnPost()
         {
+            Categories = _productService.GetProductCategories();
+            Product.ProductCategories.Category = Categories.FirstOrDefault(c => c.Id == Product.ProductCategories.Id).Category;
+            Product.Description = Information;
             //_productService.CreateProduct(string title, string description, double price, string category);
-            await _productService.CreateProduct(Product.Title, Product.Description, Product.Price, Product.ProductCategories.Category);
+            await _productService.CreateProduct(Product.Title, Product.Description, Product.Price, Product.ProductCategories);
             return RedirectToPage("DisplayProducts");
         }
     }

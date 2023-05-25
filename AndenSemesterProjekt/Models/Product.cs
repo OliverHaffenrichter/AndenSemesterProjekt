@@ -19,15 +19,14 @@ namespace AndenSemesterProjekt.Models
         [Required]
         public double Price { get; set; }
         [Required]
-        public ProductCategories ProductCategories { get; set; } = new ProductCategories();
-
+        public ProductCategories ProductCategories { get; set; }
         public ICollection<ProductCategories> Categories;
 
-        public Product(string title, string description, string category, double pris)
+        public Product(string title, string description, ProductCategories category, double pris)
         {
             Title = title;
             Description = description;
-            ProductCategories.Category = category;
+            ProductCategories = category;
             Price = pris;
         }
 

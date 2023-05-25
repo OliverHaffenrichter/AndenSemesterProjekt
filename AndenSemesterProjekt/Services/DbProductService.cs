@@ -18,19 +18,6 @@ namespace AndenSemesterProjekt.Services
             }
             return products;
         }
-        public async Task<List<Product>> GetProductsByCategoryIdAsync(string category)
-        {
-            List<Product> products;
-
-            using (var context = new MwDbContext())
-            {
-                products = context.Products
-                    .Where(p => p.ProductCategories.Category == category)
-                    .Include(p => p.ProductCategories)
-                    .AsNoTracking().ToList();
-            }
-            return products;
-        }
         public async Task<List<ProductCategories>> GetProductCategories()
         {
             List<ProductCategories> categories;
@@ -40,6 +27,6 @@ namespace AndenSemesterProjekt.Services
                 categories = context.ProductCategories.AsNoTracking().ToList();
             }
             return categories;
-        }
+        } 
     }
 }

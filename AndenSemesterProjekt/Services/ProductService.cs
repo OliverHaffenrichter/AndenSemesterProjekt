@@ -35,10 +35,11 @@ namespace AndenSemesterProjekt.Services
         }
 
 
-        public async Task CreateProduct(string title, string description, double price, string category)
+        public async Task CreateProduct(string title, string description, double price, ProductCategories category)
         {
             Product result = new Product(title, description, category, price);
             products.Add(result);
+            _dbService.AddObjectAsync(result);
         }
 
         public Product DeleteProduct(int id)
@@ -75,7 +76,7 @@ namespace AndenSemesterProjekt.Services
             //    }
 
             //}
-            return _dbProductService.GetProductsByCategoryIdAsync(category).Result.ToList();
+            return products.Where(p => p.ProductCategories.Category == category).ToList();
         }
 
         public List<Product> GetProductByCriteria(string criteria)
