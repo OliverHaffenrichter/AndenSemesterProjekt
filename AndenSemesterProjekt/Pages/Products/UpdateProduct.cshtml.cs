@@ -7,6 +7,7 @@ namespace AndenSemesterProjekt.Pages.Products
 {
     public class UpdateProductModel : PageModel
     {
+        public List<ProductCategoryList> Categories { get; set; }
         private IProductService _productService { get; set; }
         [BindProperty]
         public Product Product { get; set; }
@@ -20,13 +21,17 @@ namespace AndenSemesterProjekt.Pages.Products
         }
         public void OnGet(int id)
         {
+            Categories = _productService.GetProductCategories();
             Product = _productService.GetProductById(id);
         }
 
         public IActionResult OnPost(int id, Product product)
         {
+            Categories = _productService.GetProductCategories();
+            product.ProductCategoryList.ProductCategory = Categories.FirstOrDefault(c => c.Id == Product.ProductCategoryList.Id).ProductCategory;
+            product.Description = Information;
             _productService.UpdateProduct(id, product);
-            return Redirect($"/Products/DisplayProducts?category={product.ProductCategories.Category}&handler=ProductsByCat");
+            return RedirectToPage("DisplayProducts");
         }
     }
 }

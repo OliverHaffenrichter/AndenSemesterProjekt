@@ -13,20 +13,41 @@ namespace AndenSemesterProjekt.Services
             using (var context = new MwDbContext())
             {
                 products = context.Products
-                    .Include(p => p.ProductCategories)
+                    .Include(p => p.ProductCategoryList)
                     .AsNoTracking().ToList();
             }
             return products;
         }
-        public async Task<List<ProductCategories>> GetProductCategories()
+        public async Task<List<ProductCategoryList>> GetProductCategories()
         {
-            List<ProductCategories> categories;
+            List<ProductCategoryList> categories;
 
             using (var context = new MwDbContext())
             {
                 categories = context.ProductCategories.AsNoTracking().ToList();
             }
             return categories;
-        } 
+        }
+        public async Task AddProduct(Product product)
+        {
+            using (var context = new MwDbContext())
+            {
+                product.ProductCategoryList = context.ProductCategories.FirstOrDefault(c => c.Id == 1);
+                product.ProductCategoryList.Products.Add(product);
+                context.Products
+                    .AsNoTracking().ToList().Add(product);
+                context.SaveChanges();
+            }
+        }
+        public async Task UpdateProduct(Product product)
+        {
+            using (var context = new MwDbContext())
+            {
+                product.ProductCategoryList = context.ProductCategories.FirstOrDefault(c => c.Id == 1);
+                product.ProductCategoryList.Products.Add(product);
+                context.Products.Update(product);
+                context.SaveChanges();
+            }
+        }
     }
 }

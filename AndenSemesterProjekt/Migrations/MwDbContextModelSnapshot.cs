@@ -62,7 +62,7 @@ namespace AndenSemesterProjekt.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("ProductCategoriesId")
+                    b.Property<int>("ProductCategoryListId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -72,12 +72,12 @@ namespace AndenSemesterProjekt.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoriesId");
+                    b.HasIndex("ProductCategoryListId");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("AndenSemesterProjekt.Models.ProductCategories", b =>
+            modelBuilder.Entity("AndenSemesterProjekt.Models.ProductCategoryList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace AndenSemesterProjekt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Category")
+                    b.Property<string>("ProductCategory")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -96,13 +96,18 @@ namespace AndenSemesterProjekt.Migrations
 
             modelBuilder.Entity("AndenSemesterProjekt.Models.Product", b =>
                 {
-                    b.HasOne("AndenSemesterProjekt.Models.ProductCategories", "ProductCategories")
-                        .WithMany()
-                        .HasForeignKey("ProductCategoriesId")
+                    b.HasOne("AndenSemesterProjekt.Models.ProductCategoryList", "ProductCategoryList")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoryListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductCategories");
+                    b.Navigation("ProductCategoryList");
+                });
+
+            modelBuilder.Entity("AndenSemesterProjekt.Models.ProductCategoryList", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

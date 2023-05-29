@@ -21,10 +21,10 @@
         <input asp-for="@Model.Product.Price" class="form-control mr-1" placeholder="Enter Price" />
     </div>
     <div class="input-group mb-3">
-        <select asp-for="@Model.Product.ProductCategories.Id">
+        <select asp-for="@Model.Product.ProductCategoryList.Id">
             @foreach (var category in Model.Categories)
             {
-                <option value="@category.Id">@category.Category</option>
+                <option value="@category.Id">@category.ProductCategory</option>
             }
         </select>
     </div>

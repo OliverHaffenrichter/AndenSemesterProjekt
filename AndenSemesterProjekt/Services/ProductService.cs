@@ -7,21 +7,26 @@ namespace AndenSemesterProjekt.Services
 {
     public class ProductService : IProductService
     {
-        private List<Product> products = new List<Product>();
-        private List<ProductCategories> productCategories = new List<ProductCategories>();
-        private DbService<Product> _dbService;
+        private List<Product> products;
+        private List<ProductCategoryList> productCategories;
+        private DbService<Product> _dbGenericProductService;
+        private DbService<ProductCategoryList> _dbGenericProductCategoriesService;
         private DbProductService _dbProductService;
 
-        public ProductService(DbService<Product> dbservice, DbProductService dbProductService)
+        public ProductService(DbService<Product> dbGenericProductService, 
+            DbProductService dbProductService, DbService<ProductCategoryList> dbGenericProductCategoriesService)
         {
-            _dbService = dbservice;
+            _dbGenericProductService = dbGenericProductService;
             _dbProductService = dbProductService;
+            _dbGenericProductCategoriesService = dbGenericProductCategoriesService;
             //products = MockProduct.GetMockProduct();
-            //_dbService.SaveObjectsAsync(products);
+            //productCategories = MockProductCategories.GetMockProductCategoreis();
+            //_dbGenericProductCategoriesService.SaveObjectsAsync(productCategories);
+            //_dbGenericProductService.SaveObjectsAsync(products);
             products = _dbProductService.GetProductsAsync().Result.ToList();
         }
 
-        public List<ProductCategories> GetProductCategories()
+        public List<ProductCategoryList> GetProductCategories()
         {
             //foreach (var product in products)
             //{
@@ -35,11 +40,11 @@ namespace AndenSemesterProjekt.Services
         }
 
 
-        public async Task CreateProduct(string title, string description, double price, ProductCategories category)
+        public async Task CreateProduct(Product product)
         {
-            Product result = new Product(title, description, category, price);
-            products.Add(result);
-            _dbService.AddObjectAsync(result);
+            products.Add(product);
+            await _dbProductService.AddProduct(product);
+            //await _dbGenericProductService.AddObjectAsync(product);
         }
 
         public Product DeleteProduct(int id)
@@ -54,7 +59,7 @@ namespace AndenSemesterProjekt.Services
             //}
             Product product = GetProductById(id);
             products.Remove(product);
-            _dbService.DeleteObjectAsync(product);
+            _dbGenericProductService.DeleteObjectAsync(product);
            // _dbService.SaveObjectsAsync();
 
             return product;
@@ -76,7 +81,7 @@ namespace AndenSemesterProjekt.Services
             //    }
 
             //}
-            return products.Where(p => p.ProductCategories.Category == category).ToList();
+            return products.Where(p => p.ProductCategoryList.ProductCategory == category).ToList();
         }
 
         public List<Product> GetProductByCriteria(string criteria)
@@ -98,7 +103,18 @@ namespace AndenSemesterProjekt.Services
 
         public void UpdateProduct(int id, Product product)
         {
-            products[id] = product;
+            foreach (Product p in products)
+            {
+                if (p.Id == id)
+                {
+                    p.Title = product.Title;
+                    p.Description = product.Description;
+                    p.Price = product.Price;
+                    p.ProductCategoryList = product.ProductCategoryList;
+                    _dbProductService.UpdateProduct(p);
+                    return;
+                }
+            }
         }
     }
 }

@@ -22,13 +22,11 @@
         <input asp-for="@Model.Product.Price" class="form-control mr-1" placeholder="Enter Price" />
     </div>
     <div class="input-group mb-3">
-        <select asp-for="@Model.Product.ProductCategories.Category">
-            <option>cat1</option>
-            <option>cat2</option>
-            <option>cat3</option>
-            <option>cat4</option>
-            <option>cat5</option>
-            <option>cat6</option>
+        <select asp-for="@Model.Product.ProductCategoryList.Id">
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.ProductCategory</option>
+            }
         </select>
     </div>
     <div class="form-group">
@@ -89,4 +87,6 @@
         console.info('quill contents: ' + JSON.stringify(jdQuill.getContents()));
         document.getElementById('jdr').value = JSON.stringify(jdQuill.getContents());
     }
+    jdQuill.setContents(JSON.parse(document.getElementById('jdr').value));
+
 </script>

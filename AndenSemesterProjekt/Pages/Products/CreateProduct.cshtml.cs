@@ -8,18 +8,20 @@ namespace AndenSemesterProjekt.Pages.Products
 {
     public class CreateProductModel : PageModel
     {
-        public List<ProductCategories> Categories { get; set; }
+        public List<ProductCategoryList> Categories { get; set; }
 
         private IProductService _productService { get; set; }
+        private DbProductService _dbProductService;
         [BindProperty]
-        public Product Product { get; set; }
+        public Product Product { get; set; } = new Product();
 
         [BindProperty]
         public string Information { get; set; }
 
-        public CreateProductModel(IProductService productService) 
+        public CreateProductModel(IProductService productService, DbProductService dbProductService) 
         { 
             _productService = productService;
+            _dbProductService = dbProductService;
         }
 
         public void OnGet()
@@ -29,11 +31,10 @@ namespace AndenSemesterProjekt.Pages.Products
 
         public async Task<IActionResult> OnPost()
         {
-            Categories = _productService.GetProductCategories();
-            Product.ProductCategories.Category = Categories.FirstOrDefault(c => c.Id == Product.ProductCategories.Id).Category;
+            Categories = _dbProductService.GetProductCategories().Result;
+            Product.ProductCategoryList.ProductCategory = Categories.FirstOrDefault(c => c.Id == Product.ProductCategoryList.Id).ProductCategory;
             Product.Description = Information;
-            //_productService.CreateProduct(string title, string description, double price, string category);
-            await _productService.CreateProduct(Product.Title, Product.Description, Product.Price, Product.ProductCategories);
+            await _productService.CreateProduct(Product);
             return RedirectToPage("DisplayProducts");
         }
     }

@@ -13,6 +13,7 @@ builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddDbContext<MwDbContext>();
 builder.Services.AddSingleton<DbService<Post>, DbService<Post>>();
 builder.Services.AddSingleton<DbService<Product>, DbService<Product>> ();
+builder.Services.AddSingleton<DbService<ProductCategoryList>, DbService<ProductCategoryList>>();
 builder.Services.AddSingleton<DbProductService, DbProductService>();
 
 

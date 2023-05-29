@@ -6,10 +6,7 @@ namespace AndenSemesterProjekt.Models
 {
     public class Product
     {
-
         [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public static int NextInt { get; set; } = 0;
         [Required, MaxLength(50)]
@@ -18,15 +15,15 @@ namespace AndenSemesterProjekt.Models
         public string Description { get; set; }
         [Required]
         public double Price { get; set; }
+        public int ProductCategoryListId { get; set; }
         [Required]
-        public ProductCategories ProductCategories { get; set; }
-        public ICollection<ProductCategories> Categories;
+        public ProductCategoryList ProductCategoryList { get; set; }
 
-        public Product(string title, string description, ProductCategories category, double pris)
+        public Product(string title, string description, ProductCategoryList category, double pris)
         {
             Title = title;
             Description = description;
-            ProductCategories = category;
+            ProductCategoryList = category;
             Price = pris;
         }
 

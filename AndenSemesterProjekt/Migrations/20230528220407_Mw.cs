@@ -32,7 +32,7 @@ namespace AndenSemesterProjekt.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ProductCategory = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,23 +48,23 @@ namespace AndenSemesterProjekt.Migrations
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    ProductCategoriesId = table.Column<int>(type: "int", nullable: false)
+                    ProductCategoryListId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_ProductCategories_ProductCategoriesId",
-                        column: x => x.ProductCategoriesId,
+                        name: "FK_Products_ProductCategories_ProductCategoryListId",
+                        column: x => x.ProductCategoryListId,
                         principalTable: "ProductCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProductCategoriesId",
+                name: "IX_Products_ProductCategoryListId",
                 table: "Products",
-                column: "ProductCategoriesId");
+                column: "ProductCategoryListId");
         }
 
         /// <inheritdoc />

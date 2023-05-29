@@ -10,7 +10,7 @@ namespace AndenSemesterProjekt.Pages.Products
 {
     public class DisplayCategoriesModel : PageModel
     {
-        public List<ProductCategories> Categories { get; set; }
+        public List<ProductCategoryList> Categories { get; set; }
         public IProductService _productService;
 
         public DisplayCategoriesModel(IProductService productService)

@@ -63,9 +63,10 @@
                     </div>
                     <div class="card-footer">
                         <h3>Card Footer</h3>
-                        <p>@item.ProductCategories.Category</p>
+                        <p>@item.ProductCategoryList.ProductCategory</p>
                         <p>@item.Price</p>
                         <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+                        <a class="btn btn-danger btn-sm " type="button" title="Update" asp-page="UpdateProduct" asp-route-id="@item.Id">Update</a>
                     </div>
                 </div>
             </div>
