@@ -22,7 +22,7 @@ namespace AndenSemesterProjekt.Pages.Products
       
 
         [BindProperty]
-        public string Categories { get; set; }
+        public ProductCategoryList Categories { get; set; }
 
         public DisplayProductModel(IProductService productService)
         {
@@ -48,7 +48,7 @@ namespace AndenSemesterProjekt.Pages.Products
                 return Page();
         }
 
-        public IActionResult OnGetProductsByCat(string category)
+        public IActionResult OnGetProductsByCat(int id)
         {
 
             if (!ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace AndenSemesterProjekt.Pages.Products
                 return Page();
             }
 
-            products = _productService.GetProductByCategory(category);
+            products = _productService.GetProductByCategory(id);
 
             return Page();
         }

@@ -23,6 +23,7 @@ namespace AndenSemesterProjekt.Pages.Products
         {
             Categories = _productService.GetProductCategories();
             Product = _productService.GetProductById(id);
+            Information = Product.Description;
         }
 
         public IActionResult OnPost(int id, Product product)

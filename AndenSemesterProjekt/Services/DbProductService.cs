@@ -32,7 +32,7 @@ namespace AndenSemesterProjekt.Services
         {
             using (var context = new MwDbContext())
             {
-                product.ProductCategoryList = context.ProductCategories.FirstOrDefault(c => c.Id == 1);
+                product.ProductCategoryList = context.ProductCategories.FirstOrDefault(c => c.Id == product.ProductCategoryList.Id);
                 product.ProductCategoryList.Products.Add(product);
                 context.Products
                     .AsNoTracking().ToList().Add(product);
@@ -43,7 +43,7 @@ namespace AndenSemesterProjekt.Services
         {
             using (var context = new MwDbContext())
             {
-                product.ProductCategoryList = context.ProductCategories.FirstOrDefault(c => c.Id == 1);
+                product.ProductCategoryList = context.ProductCategories.FirstOrDefault(c => c.Id == product.ProductCategoryList.Id);
                 product.ProductCategoryList.Products.Add(product);
                 context.Products.Update(product);
                 context.SaveChanges();

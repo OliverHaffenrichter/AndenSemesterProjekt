@@ -70,7 +70,7 @@ namespace AndenSemesterProjekt.Services
             return products; 
         }
 
-        public List<Product> GetProductByCategory(string category)
+        public List<Product> GetProductByCategory(int id)
         {
             //List<Product> productCategory = new List<Product>();
             //if (category != null)
@@ -81,7 +81,7 @@ namespace AndenSemesterProjekt.Services
             //    }
 
             //}
-            return products.Where(p => p.ProductCategoryList.ProductCategory == category).ToList();
+            return products.Where(p => p.ProductCategoryList.Id == id).ToList();
         }
 
         public List<Product> GetProductByCriteria(string criteria)

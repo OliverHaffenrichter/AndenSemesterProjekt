@@ -13,7 +13,7 @@
 
                 <div class="card-header">
                     <form method="post">
-                        <a asp-page="/Products/DisplayProducts" asp-page-handler="ProductsByCat" asp-route-category="@item.ProductCategory">
+                        <a asp-page="/Products/DisplayProducts" asp-page-handler="ProductsByCat" asp-route-id="@item.Id">
                     <h1>@item.ProductCategory</h1>
                     </a>
                     </form>

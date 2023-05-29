@@ -16,11 +16,6 @@ namespace AndenSemesterProjekt.Models
         {
             ProductCategory = category;
         }
-        public ProductCategoryList(int id, string category)
-        {
-            Id = id;
-            ProductCategory = category;
-        }
         public ProductCategoryList()
         {
 
