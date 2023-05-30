@@ -30,7 +30,7 @@ namespace AndenSemesterProjekt.Pages.Blog
 
         public IActionResult OnPost()
         {
-            Post deletedBlog = _BlogService.deleteBlogPost(post.Id);
+            Post deletedBlog = _BlogService.DeleteBlogPost(post.Id);
             if (deletedBlog == null)
                 return RedirectToPage("/NotFound");
 

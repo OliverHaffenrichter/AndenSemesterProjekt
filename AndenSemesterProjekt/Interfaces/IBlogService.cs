@@ -5,7 +5,7 @@ namespace AndenSemesterProjekt.Interfaces
     public interface IBlogService
     {
         Task CreateBlogPost(string title, string information);
-        Post deleteBlogPost(int id);
+        Post DeleteBlogPost(int id);
         void UpdateBlogPost(Post post);
         List<Post> GetAllBlogPosts();
         List<Post> GetAllBlogPostsByCategory(string category);

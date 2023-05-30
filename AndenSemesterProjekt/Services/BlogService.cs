@@ -33,7 +33,7 @@ namespace AndenSemesterProjekt.Services
             await _dbService.AddObjectAsync(Result);
         }
 
-        public Post deleteBlogPost(int id)
+        public Post DeleteBlogPost(int id)
         {
             foreach (Post post in posts)
             {

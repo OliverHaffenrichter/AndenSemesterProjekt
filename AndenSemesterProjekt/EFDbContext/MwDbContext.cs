@@ -9,7 +9,7 @@ namespace AndenSemesterProjekt.EFDbContext
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MentallWellness; Integrated Security=True; Connect Timeout=30; Encrypt=False");
-    }
+        }
 
         public DbSet<ProductCategoryList> ProductCategories { get; set; }
         public DbSet<Post> Posts { get; set; }
