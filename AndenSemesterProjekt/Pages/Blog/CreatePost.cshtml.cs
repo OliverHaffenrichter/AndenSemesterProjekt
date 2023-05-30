@@ -8,18 +8,18 @@ namespace AndenSemesterProjekt.Pages.Blog
     public class CreatePostModel : PageModel
     {
         /// <summary>
-        /// simple variable used to contain a Post Object
+        /// Property used to contain a Post Object
         /// </summary>
         [BindProperty]
         public Post Post { get; set; }
         /// <summary>
-        /// a variable for containing the information from the quill editor
+        /// Property used for containing the information from the quill editor
         /// </summary>
         [BindProperty]
         public string Information { get; set; }
 
         /// <summary>
-        /// variable used for dependency inject for the BlogService
+        /// Property used for dependency inject for the BlogService
         /// </summary>
         private IBlogService _blogService;
 
@@ -37,9 +37,9 @@ namespace AndenSemesterProjekt.Pages.Blog
         }
 
         /// <summary>
-        /// OnPost CreatePost
+        /// Function that creates the new BlogPost
         /// </summary>
-        /// <returns></returns>
+        /// <returns>RedirectToPage("DisplayBlog")</returns>
         public async Task<IActionResult> OnPost()
         {
             await _blogService.CreateBlogPost(Post.Title, Information);

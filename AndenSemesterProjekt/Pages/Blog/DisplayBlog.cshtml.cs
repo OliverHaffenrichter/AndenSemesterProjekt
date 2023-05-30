@@ -11,7 +11,7 @@ namespace AndenSemesterProjekt.Pages.Blog
     public class DisplayBlogModel : PageModel
     {
         /// <summary>
-        /// Posts returns the amount of blog posts being displayed on the page
+        /// Property contain the ListOfPost being dispalyed on the page
         /// </summary>
         public List<Post> Posts { get; set; }
 
@@ -20,7 +20,7 @@ namespace AndenSemesterProjekt.Pages.Blog
         /// </summary>
         public List<Post> NewestPosts { get; set; }
         /// <summary>
-        /// _blogService is a variable used to for dependency injection 
+        /// _blogService is a variable used to for dependency injection, and to hold the blogService object
         /// </summary>
         public IBlogService _blogService;
 
@@ -31,7 +31,13 @@ namespace AndenSemesterProjekt.Pages.Blog
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; }
 
+        /// <summary>
+        /// Property used to get the oldest creationdate from the Posts
+        /// </summary>
         public int MinYear { get; set; } = 0;
+        /// <summary>
+        /// Property used to get the newest creationdate from the posts
+        /// </summary>
         public int MaxYear { get; set; } = 0;
 
         /// <summary>
@@ -53,6 +59,9 @@ namespace AndenSemesterProjekt.Pages.Blog
         [BindProperty]
         public string Criteria { get; set; }
 
+        /// <summary>
+        /// Property used to store the current Year being displayed on the Page
+        /// </summary>
         [BindProperty]
         public int Year { get; set; }
 
@@ -89,6 +98,12 @@ namespace AndenSemesterProjekt.Pages.Blog
             return Page();
         }
 
+        /// <summary>
+        /// Method for displaying Blogs by year with pagination 
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="currentPage"></param>
+        /// <returns></returns>
         public IActionResult OnGetBlogByYear(int year, int currentPage)
         {
             if (!ModelState.IsValid)
@@ -108,6 +123,12 @@ namespace AndenSemesterProjekt.Pages.Blog
             return Page();
         }
 
+        /// <summary>
+        /// Method for displaying Posts depending on search(Criteria)
+        /// </summary>
+        /// <param name="SearchCriteria"></param>
+        /// <param name="currentPage"></param>
+        /// <returns></returns>
         public IActionResult OnGetCriteria(string SearchCriteria, int currentPage)
         {
             if (!ModelState.IsValid)
@@ -150,7 +171,9 @@ namespace AndenSemesterProjekt.Pages.Blog
                 .ToList();
             return Redirect($"/Blog/DisplayBlog?SearchCriteria={Criteria}&currentPage={currentPage}&handler=Criteria");
         }
-
+        /// <summary>
+        /// Helper Method used set MinYear and MaxYear
+        /// </summary>
         private void DisplayYear()
         {
             MinYear = _blogService.GetAllBlogPosts().Min(p => p.CreationDate.Year);

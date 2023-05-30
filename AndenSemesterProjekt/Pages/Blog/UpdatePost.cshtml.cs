@@ -8,18 +8,18 @@ namespace AndenSemesterProjekt.Pages.Blog
     public class UpdatePostModel : PageModel
     {
         /// <summary>
-        /// simple variable used to contain a Post Object
+        /// Property used to contain a Post Object being updated to
         /// </summary>
         [BindProperty]
         public Post Post { get; set; }
         /// <summary>
-        /// a variable for containing the information from the quill editor
+        /// Property for containing the information from the quill editor
         /// </summary>
         [BindProperty]
         public string Information { get; set; }
 
         /// <summary>
-        /// variable used for dependency inject for the BlogService
+        /// variable used for dependency injection for the BlogService
         /// </summary>
         private IBlogService _blogService;
 
@@ -27,12 +27,21 @@ namespace AndenSemesterProjekt.Pages.Blog
         {
             _blogService = blogService;
         }
+        /// <summary>
+        /// Method used to get the Post that needs to be updated
+        /// </summary>
+        /// <param name="id"></param>
         public void OnGet(int id)
         {
             Post = _blogService.GetBlogPostById(id);
             Information = Post.Information;
         }
 
+        /// <summary>
+        /// method used to Update the selected post
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult OnPost(int id)
         {
             ModelState.Remove("Post.Information");
