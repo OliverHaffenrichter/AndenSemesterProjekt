@@ -10,14 +10,28 @@ namespace AndenSemesterProjekt.Pages.Products
 {
     public class DisplayCategoriesModel : PageModel
     {
+        /// <summary>
+        /// Property used to contain the ProductCategories
+        /// </summary>
         public List<ProductCategoryList> Categories { get; set; }
+        /// <summary>
+        /// Property used to contain the ProductService
+        /// </summary>
         public IProductService _productService;
 
+        /// <summary>
+        /// Dependency Injection
+        /// </summary>
+        /// <param name="productService"></param>
         public DisplayCategoriesModel(IProductService productService)
         {
             _productService = productService;
         }
 
+        /// <summary>
+        /// method used to get the categories
+        /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet()
         {
             if (!ModelState.IsValid)

@@ -9,27 +9,35 @@ namespace AndenSemesterProjekt.Pages.Products
 {
     public class DisplayProductModel : PageModel
     {
-
         /// <summary>
-        /// products returns the amount of blog posts being displayed on the page
+        /// Property used to contain the products being dispalyed
         /// </summary>
         public List<Product> products { get; set; } = new List<Product>();
         /// <summary>
-        /// _productService is a variable used to for dependency injection 
+        /// _productService is a Property used to for dependency injection and containing the ProductService
         /// </summary>
         public IProductService _productService;
 
       
-
+        /// <summary>
+        /// Property used to hold the Product categories
+        /// </summary>
         [BindProperty]
         public ProductCategoryList Categories { get; set; }
 
+        /// <summary>
+        /// Dependency injection
+        /// </summary>
+        /// <param name="productService"></param>
         public DisplayProductModel(IProductService productService)
         {
             _productService = productService;
         }
 
-
+        /// <summary>
+        /// Method used to display all products
+        /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet() 
         { 
             if (!ModelState.IsValid)
@@ -48,6 +56,11 @@ namespace AndenSemesterProjekt.Pages.Products
                 return Page();
         }
 
+        /// <summary>
+        /// Method used to displayed products depending on selected category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult OnGetProductsByCat(int id)
         {
 
