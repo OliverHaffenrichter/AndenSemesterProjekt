@@ -8,13 +8,19 @@ namespace AndenSemesterProjekt.Services
 {
     public class BlogService : IBlogService
     {
+        /// <summary>
+        /// Property used to hold the posts for the blogservice
+        /// </summary>
         public List<Post> posts = new List<Post>();
 
+        /// <summary>
+        /// Property used to hold the generic database service for Posts
+        /// </summary>
         private DbService<Post> _dbService;
 
-        //
         //public int CurrentPage { get; set; } = 1;
         //public int PageSize { get; set; } = 8;
+
         public BlogService(DbService<Post> dbService)
         {
             //posts = MockPost.GetMockPosts();

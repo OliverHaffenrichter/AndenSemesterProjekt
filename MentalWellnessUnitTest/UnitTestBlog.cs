@@ -4,10 +4,22 @@ namespace MentalWellnessUnitTest
     [TestClass]
     public class UnitTestBlog
     {
+        /// <summary>
+        /// variable used for containign the posts.
+        /// </summary>
         private List<Post> posts;
+        /// <summary>
+        /// variable used for holding the blogService
+        /// </summary>
         private BlogService blogService = new BlogService();
+        /// <summary>
+        /// variable used to hold the string being searched for
+        /// </summary>
         private string SearchString;
 
+        /// <summary>
+        /// Method used to declare variables before testing
+        /// </summary>
         [TestInitialize]
         public void BeforeTest()
         {
@@ -28,19 +40,28 @@ namespace MentalWellnessUnitTest
             blogService.posts = posts;
         }
 
+        /// <summary>
+        /// method used to see if Search method returns true if the string is incorrect
+        /// </summary>
         [TestMethod]
         public void TestSearchPostWrongString()
         {
             SearchString = "titli";
-            Assert.IsFalse(blogService.GetAllBlogPostsByCriteria(SearchString).Count == 1);
+            Assert.IsFalse(blogService.GetAllBlogPostsByCriteria(SearchString).Count >= 1);
         }
         
+        /// <summary>
+        /// Method used to see if the method return true if the string is correct in basic form
+        /// </summary>
         [TestMethod]
         public void TestSearchPostRightString()
         {
             SearchString = "single";
             Assert.IsTrue(blogService.GetAllBlogPostsByCriteria(SearchString).Count == 1);
         }
+        /// <summary>
+        /// method used to test if the string is uppercase sensetive
+        /// </summary>
         [TestMethod]
         public void TestSearchPostUppercase()
         {
@@ -48,6 +69,10 @@ namespace MentalWellnessUnitTest
             SearchString = "title2";
             Assert.IsTrue(blogService.GetAllBlogPostsByCriteria(SearchString).Count == 2);
         }
+
+        /// <summary>
+        /// method used to test if the string is space sensetive
+        /// </summary>
         [TestMethod]
         public void TestSearchPostSpacing()
         {
